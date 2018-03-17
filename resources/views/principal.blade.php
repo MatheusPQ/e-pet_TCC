@@ -50,7 +50,13 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @if(isPetshop())
+                                <a class="dropdown-item" href="#">Cadastrar um petshop</a>  
+                                <a class="dropdown-item" href="#">Meus petshops</a>  
+                                <div class="dropdown-divider"></div>
+
+                            @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
