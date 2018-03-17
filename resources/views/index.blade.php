@@ -1,8 +1,8 @@
 @extends('principal')
 @section('conteudo')
 
-<div id="bg">
-    <img id="img-fundo" src="/img/jumbotron.jpg" alt="">
+{{--  <div id="bg">
+    <img id="img-fundo" src="/img/main2.jpg" alt="">
 </div>
 
 <section class="topo">
@@ -12,13 +12,31 @@
             <p class="lead">A maior 'rede social' de petshops do mundo!</p>
             <hr>
             <p class="lead">
-                <a class="btn btn-outline-dark btn-lg" href="#" role="button">Cadastrar meu petshop!</a>
+                <a class="btn btn-outline-primary btn-lg" href="#" role="button">Cadastrar meu petshop!</a>
             </p>
         </div>
     </div>
-</section>
+</section>  --}}
+
+{{--  <section class="topo2">
+    <div class="background-image" style="background-image: url(img/main2.jpg)"></div>
+    <div class="topo2-conteudo">
+        <h1>E-Pet</h1>
+        <h3>A maior rede social de petshops do mundo!</h3>
+
+        <a href="" class="btn btn-outline-light">Cadastrar meu petshop!</a>
+        <a href="" class="btn btn-outline-light">Ler mais!</a>
+    </div>
+</section>  --}}
 
 <div class="container">
+
+    <section class="topo3">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Buscar petshop:</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+    </section>
     <section class="conteudo">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6">
@@ -31,7 +49,7 @@
                         <p class="card-text avaliacao">Avaliação: 4.3/5</p>
                         <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
                         <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p>
-                        <a href="#" class="btn btn-primary btn-block">Marcar horário</a>
+                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +64,7 @@
                         <p class="card-text avaliacao">Avaliação: 5/5</p>
                         <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
                         <p class="card-text">Tosa: <span class="indisponivel"> Indisponível</span></p>
-                        <a href="#" class="btn btn-primary btn-block">Marcar horário</a>
+                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +79,7 @@
                         <p class="card-text avaliacao">Avaliação: 3.2/5</p>
                         <p class="card-text">Banho: <span class="preco"> R$20,00</span></p>
                         <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p>
-                        <a href="#" class="btn btn-primary btn-block">Marcar horário</a>
+                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
                     </div>
                 </div>
             </div>
@@ -76,7 +94,7 @@
                         <p class="card-text avaliacao">Avaliação: 4.2/5</p>
                         <p class="card-text">Banho: <span class="preco"> R$30,00</span></p>
                         <p class="card-text">Tosa: <span class="preco"> R$30,00</span></p>
-                        <a href="#" class="btn btn-primary btn-block">Marcar horário</a>
+                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
                     </div>
                 </div>
             </div>
@@ -91,7 +109,7 @@
                         <p class="card-text avaliacao">Avaliação: 4/5</p>
                         <p class="card-text">Banho: <span class="preco"> R$20,00</span></p>
                         <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p>
-                        <a href="#" class="btn btn-primary btn-block">Marcar horário</a>
+                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
                     </div>
                 </div>
             </div>
