@@ -9,6 +9,7 @@ class Petshop extends Model
     protected $fillable = [
         'nomeFantasia',
         'razaoSocial',
+        'cpf',
         'cnpj',
         'cep',
         'endereco',
@@ -16,7 +17,9 @@ class Petshop extends Model
         'cidade',
         'bairro',
         'telefone',
+        'email',
         'informacao',
+        'imagem',
         'horarioAbertura',
         'horarioFechamento'
     ];

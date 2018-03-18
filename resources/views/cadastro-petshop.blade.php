@@ -8,7 +8,7 @@
                     <div class="card-header">Cadastrar petshop</div>
     
                     <div class="card-body">
-                        <form method="POST" action="{{ route('petshop.store') }}">
+                        <form method="POST" action="{{ route('petshop.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -151,10 +151,16 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="">Horário de funcionamento</label>
+                                </div>
+                            </div>
                             
                             <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="horarioAbertura">Horário abertura</label>
+                                <div class="form-group col-6 col-md-4">
+                                    <label for="horarioAbertura">Das</label>
         
                                     <input id="horarioAbertura" type="text" class="form-control{{ $errors->has('horarioAbertura') ? ' is-invalid' : '' }}" name="horarioAbertura">
     
@@ -165,8 +171,8 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group col-md-4">
-                                    <label for="horarioFechamento">Horário fechamento</label>
+                                <div class="form-group col-6 col-md-4">
+                                    <label for="horarioFechamento">Às</label>
         
                                     <input id="horarioFechamento" type="text" class="form-control{{ $errors->has('horarioFechamento') ? ' is-invalid' : '' }}" name="horarioFechamento">
     
@@ -176,13 +182,14 @@
                                         </span>
                                     @endif
                                 </div>
-
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Escolha um arquivo</label>
+                            </div>
+                            <div class="form-row">            
+                                <div class="form-group col-md-4">
+                                    <label for="customFile">Escolha um arquivo</label>
+                                    <input type="file" class="form-control-file" name="imagem" id="customFile" required accept="image/*">
+                                    {{--  <input type="file" class="file" id="customFile" required>  --}}
                                 </div>
                             </div>
-                            
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label for="informacao">Informações adicionais</label>
@@ -203,4 +210,8 @@
         </div>
     </div>
 
-@endsection
+{{--  @section('script')
+    <script src="/js/fileinput2.js"></script>
+@endsection  --}}
+
+@stop

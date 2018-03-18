@@ -11,8 +11,15 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/css/estilo.css">
         <link rel="stylesheet" href="/css/app.css">
-        
-        </style>
+
+        {{--  File Input  --}}
+        {{--  <link href="/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/js/fileinput.js" type="text/javascript"></script>
+        <script src="/js/locales/pt-BR.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>  --}}
+        {{--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">  --}}
     </head>
     <body>
         {{--  <div id="app">  --}}
