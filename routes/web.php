@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/petshop', 'PetshopController@index');
+Route::get('/petshop/create', 'PetshopController@create');
+Route::post('/petshop', 'PetshopController@store')->name('petshop.store');
+Route::get('/petshop/{id}', 'PetshopController@show');  
+Route::get('/petshop/{id}/edit', 'PetshopController@edit');
+Route::put('/petshop/{id}', 'PetshopController@update');
+Route::delete('/petshop/{id}', 'PetshopController@destroy');

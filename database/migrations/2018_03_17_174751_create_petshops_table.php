@@ -18,15 +18,18 @@ class CreatePetshopsTable extends Migration
             $table->string('nomeFantasia');
             $table->string('razaoSocial');
             $table->string('cnpj');
+            $table->string('cpf');
             $table->string('cep');
             $table->string('endereco');
             $table->string('uf');
             $table->string('cidade');
             $table->string('bairro');
             $table->string('telefone');
-            $table->string('informacao');
-            $table->time('horarioAbertura');
-            $table->time('horarioFechamento');
+            $table->string('email')->nullable();
+            $table->string('imagem')->nullable();
+            $table->string('informacao', 500)->nullable();
+            $table->time('horarioAbertura')->nullable();
+            $table->time('horarioFechamento')->nullable();
             $table->timestamps();
         });
     }

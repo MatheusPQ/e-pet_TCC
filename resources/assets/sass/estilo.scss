@@ -113,17 +113,17 @@ section {
     margin-right: 0 !important;
 }
 
-.card-img-top {
+.conteudo .card-img-top {
     height: 180px;
     max-height: 180px;
 }
 
-.card {
+.conteudo .card {
     max-width: 290px;
     margin: 5px 0px !important;
 }
 
-.card-body {
+.conteudo .card-body {
     padding: 15px !important;
 }
 
@@ -131,21 +131,21 @@ section {
 //     list-style: none;
 // }
 
-.card-body hr {
+.conteudo .card-body hr {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.card-body p {
+.conteudo .card-body p {
     margin-bottom: 0px;
 }
 
-.card-body p.avaliacao {
+.conteudo .card-body p.avaliacao {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.card-body a {
+.conteudo .card-body a {
     margin-top: 5px !important;
 }
 
