@@ -161,6 +161,20 @@ span.indisponivel {
     color: red;
 }
 
+// section.servicos .btn-group-toggle {
+//     display: flex;
+//     flex-wrap: wrap;
+// }
+
+section.servicos label, section.servicos button{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+section.servicos div.col-md-6{
+    margin: 0 !important;
+}
+
 // p.preco {
 //     font-size: 20px;
 //     // font-weight: bold;

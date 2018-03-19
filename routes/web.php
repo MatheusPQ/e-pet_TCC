@@ -20,9 +20,28 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/petshop', 'PetshopController@index');
-Route::get('/petshop/create', 'PetshopController@create');
 Route::post('/petshop', 'PetshopController@store')->name('petshop.store');
-Route::get('/petshop/{id}', 'PetshopController@show');  
-Route::get('/petshop/{id}/edit', 'PetshopController@edit');
-Route::put('/petshop/{id}', 'PetshopController@update');
-Route::delete('/petshop/{id}', 'PetshopController@destroy');
+Route::get('/petshop/create', 'PetshopController@create');
+// Route::get('/petshop/{id}', 'PetshopController@show');  
+// Route::get('/petshop/{id}/edit', 'PetshopController@edit');
+// Route::put('/petshop/{id}', 'PetshopController@update');
+// Route::delete('/petshop/{id}', 'PetshopController@destroy');
+
+Route::get('/servico', 'ServicosController@index');
+Route::post('/servico', 'ServicosController@store')->name('servico.store');
+Route::get('/servico/create', 'ServicosController@create');
+// Route::get('/servico/{id}', 'ServicosController@show');
+// Route::get('/servico/{id}/edit', 'ServicosController@edit');
+// Route::put('/servico/{id}', 'ServicosController@update');
+// Route::delete('/servico/{id}', 'ServicosController@destroy');
+
+Route::get('/petshopServico', 'PetshopServicoController@index');
+Route::post('/petshopServico', 'PetshopServicoController@store')->name('petshopServico.store');
+Route::get('/petshopServico/{id}/create', 'PetshopServicoController@create')->name('petshopServico.create');
+// Route::get('/servico/{id}', 'PetshopServicoController@show');
+// Route::get('/servico/{id}/edit', 'PetshopServicoController@edit');
+// Route::put('/servico/{id}', 'PetshopServicoController@update');
+// Route::delete('/servico/{id}', 'PetshopServicoController@destroy');
+
+// Route::get('/servico/{id}/addServicos', 'ServicosController@addServicos')->name('servico.addServicos');
+// Route::post('/servico/save', 'ServicosController@save')->name('servico.save');

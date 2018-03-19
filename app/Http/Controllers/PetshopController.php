@@ -44,6 +44,8 @@ class PetshopController extends Controller
         ];
 
         PetshopUser::create($petshopUser);
-        return view('index');
+
+        $petshop = Petshop::find($petshop->id);
+        return redirect()->route('petshopServico.create', [$petshop]);
     }
 }

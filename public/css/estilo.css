@@ -110,6 +110,16 @@ span.indisponivel {
   color: red;
 }
 
+section.servicos label,
+section.servicos button {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+section.servicos div.col-md-6 {
+  margin: 0 !important;
+}
+
 footer {
   color: white;
   background-color: #007bff;
