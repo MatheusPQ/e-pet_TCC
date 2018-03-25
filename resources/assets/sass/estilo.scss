@@ -195,3 +195,10 @@ footer li{
         margin: 5px auto !important;
     }
 }
+
+// Navbar Área Administrativa
+nav#navbar-admin {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}

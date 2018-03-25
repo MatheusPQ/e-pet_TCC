@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/petshop', 'PetshopController@index');
 Route::post('/petshop', 'PetshopController@store')->name('petshop.store');
 Route::get('/petshop/create', 'PetshopController@create');
-// Route::get('/petshop/{id}', 'PetshopController@show');  
+// Route::get('/petshop/{id}', 'PetshopController@show');
 // Route::get('/petshop/{id}/edit', 'PetshopController@edit');
 // Route::put('/petshop/{id}', 'PetshopController@update');
 // Route::delete('/petshop/{id}', 'PetshopController@destroy');
@@ -45,3 +45,5 @@ Route::get('/petshopServico/{id}/create', 'PetshopServicoController@create')->na
 
 // Route::get('/servico/{id}/addServicos', 'ServicosController@addServicos')->name('servico.addServicos');
 // Route::post('/servico/save', 'ServicosController@save')->name('servico.save');
+
+Route::get('/admin/{id}', 'PetshopController@showAdmin');
