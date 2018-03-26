@@ -10,16 +10,25 @@ class PetshopServicoController extends Controller
 {
     public function create($id){
         $petshop = Petshop::find($id);
-        return view('cadastro-servico', compact('petshop'));
+        $petshop_servico = PetshopServico::where('petshop_id', $id);
+        return view('admin-petshop-servicos', compact('petshop', 'petshop_servico'));
     }
 
     public function store(Request $req){
         $petshop_id = $req->id;
+        $servico_id = $req->servico_id;
 
-        foreach($req->servicos as $servico){
-            PetshopServico::create(['petshop_id' => $petshop_id, 'servico_id' => $servico]);
+        $dadosQuery = [
+            'petshop_id' => $petshop_id,
+            'servico_id' => $servico_id
+        ];
+
+        $petshop_servico = PetshopServico::where($dadosQuery)->first();
+
+        if(isset($petshop_servico)){
+            PetshopServico::where($dadosQuery)->delete();
+        } else {
+            PetshopServico::create($dadosQuery);
         }
-
-        return redirect('/');
     }
 }

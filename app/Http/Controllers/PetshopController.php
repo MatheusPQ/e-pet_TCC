@@ -46,11 +46,16 @@ class PetshopController extends Controller
         PetshopUser::create($petshopUser);
 
         $petshop = Petshop::find($petshop->id);
-        return redirect()->route('petshopServico.create', [$petshop]);
+        return redirect()->route('admin.servicos', [$petshop]);
     }
 
     public function showAdmin($id){
         $petshop = Petshop::find($id);
         return view('admin-petshop', compact('petshop'));
+    }
+
+    public function showAnimais($id){
+        $petshop = Petshop::find($id);
+        return view('admin-petshop-precos', compact('petshop'));
     }
 }

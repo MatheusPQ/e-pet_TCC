@@ -27,6 +27,14 @@ Route::get('/petshop/create', 'PetshopController@create');
 // Route::put('/petshop/{id}', 'PetshopController@update');
 // Route::delete('/petshop/{id}', 'PetshopController@destroy');
 
+Route::get('/admin/{id}', 'PetshopController@showAdmin')->name('admin');
+Route::get('/admin/{id}/animais', 'PetshopController@showAnimais')->name('admin.animais');
+Route::post('/admin/{id}/animais', 'PetshopController@novoAnimal')->name('admin.animais.novo');
+Route::get('/admin/{id}/servicos', 'PetshopServicoController@create')->name('admin.servicos');
+Route::post('/admin/{id}/servicos', 'PetshopServicoController@store')->name('admin.servicos.store');
+
+
+
 Route::get('/servico', 'ServicosController@index');
 Route::post('/servico', 'ServicosController@store')->name('servico.store');
 Route::get('/servico/create', 'ServicosController@create');
@@ -45,5 +53,3 @@ Route::get('/petshopServico/{id}/create', 'PetshopServicoController@create')->na
 
 // Route::get('/servico/{id}/addServicos', 'ServicosController@addServicos')->name('servico.addServicos');
 // Route::post('/servico/save', 'ServicosController@save')->name('servico.save');
-
-Route::get('/admin/{id}', 'PetshopController@showAdmin');
