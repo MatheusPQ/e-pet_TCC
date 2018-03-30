@@ -53,9 +53,4 @@ class PetshopController extends Controller
         $petshop = Petshop::find($id);
         return view('admin-petshop', compact('petshop'));
     }
-
-    public function showAnimais($id){
-        $petshop = Petshop::find($id);
-        return view('admin-petshop-precos', compact('petshop'));
-    }
 }

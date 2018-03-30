@@ -8,7 +8,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{{route('admin', ['id' => $petshop->id])}}">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="{{route('admin.servicos', ['id' => $petshop->id])}}">Serviços</a>
-                <a class="nav-item nav-link" href="{{route('admin.animais', ['id' => $petshop->id])}}">Animais</a>
+                <a class="nav-item nav-link" href="{{route('admin.servicoRaca', ['id' => $petshop->id])}}">Animais</a>
             </div>
         </div>
     </nav>

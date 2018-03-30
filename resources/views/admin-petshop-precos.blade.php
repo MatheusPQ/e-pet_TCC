@@ -8,7 +8,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{{route('admin', ['id' => $petshop->id])}}">Home</a>
                 <a class="nav-item nav-link" href="{{route('admin.servicos', ['id' => $petshop->id])}}">Serviços</a>
-                <a class="nav-item nav-link active" href="{{route('admin.animais', ['id' => $petshop->id])}}">Animais <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="{{route('admin.servicoRaca', ['id' => $petshop->id])}}">Animais <span class="sr-only">(current)</span></a>
             </div>
         </div>
     </nav>
@@ -18,14 +18,19 @@
             ADICIONAR ANIMAL
         </div>
         <div class="card-body">
-            {{--  <h5 class="card-title">Special title treatment</h5>  --}}
-            <form method="POST" action="{{ route('admin.animais.novo', ['id' => $petshop->id]) }}">
+            <form method="POST" action="{{ route('admin.servicoRaca.novo', ['id' => $petshop->id]) }}">
                     @csrf
+                    <h5 class="card-title">Selecionar raça</h5>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="raca">Raça</label>
 
-                            <input id="raca" type="text" class="form-control{{ $errors->has('raca') ? ' is-invalid' : '' }}" name="raca" value="{{ old('raca') }}" required autofocus>
+                            {{--  <input id="raca" type="text" class="form-control{{ $errors->has('raca') ? ' is-invalid' : '' }}" name="raca" value="{{ old('raca') }}" required autofocus>  --}}
+                            <select name="raca" id="raca" class="form-control{{ $errors->has('raca') ? ' is-invalid' : '' }}">
+                                @foreach($racas as $raca)
+                                    <option value="{{ $raca['id'] }}">{{ $raca['raca'] }}</option>
+                                @endforeach
+                            </select>
 
                             @if ($errors->has('raca'))
                                 <span class="invalid-feedback">
@@ -33,72 +38,37 @@
                                 </span>
                             @endif
                         </div>
+                    </div>
 
-                        <div class="form-group col-md-4">
-                            <label for="servico">Serviço</label>
+                    <hr>
+                    <h5 class="card-title">Definir preços</h5>
 
-                            <input id="servico" type="text" class="form-control{{ $errors->has('servico') ? ' is-invalid' : '' }}" name="servico" required>
-
-                            @if ($errors->has('servico'))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('servico') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group col-md-4">
-                            <label for="preco">Preço (R$)</label>
-
-                            <input id="preco" type="number" class="form-control{{ $errors->has('preco') ? ' is-invalid' : '' }}" name="preco" required>
-
-                            @if ($errors->has('preco'))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('preco') }}</strong>
-                                </span>
-                            @endif
-                        </div>
+                    <div class="form-row">
+                        @foreach($petshop_servicos as $petshop_servico)
+                            <div class="form-group col-md-4 col-sm-6">
+                                <label for="preco">{{$petshop_servico->servico->servico}}</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input id="{{ $petshop_servico->servico->id }}" type="text" class="form-control" name="preco[]" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success" type="button"><i class="material-icons">check</i></button>
+                                        <button class="btn btn-danger" type="button">X</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 
             </form>
         </div>
-        <div class="card-footer text-muted">
-            2 days ago
-        </div>
     </div>
-{{--  
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Adicionar novo animal</h5>
-
-                    <form method="POST" action="{{ route('admin.animais.novo', ['id' => $petshop->id]) }}" enctype="multipart/form-data">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="raca">Raça</label>
-                        
-                                <input id="raca" type="text" class="form-control{{ $errors->has('raca') ? ' is-invalid' : '' }}" name="raca" value="{{ old('raca') }}" required autofocus>
-                
-                                @if ($errors->has('raca'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('raca') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-block">Adicionar!</button>
-                </div>
-            </div>
-        </div>
-    </div>  --}}
 </div>
 
 
-{{--  @section('script')
-    <script src="/js/fileinput2.js"></script>
-@endsection  --}}
+@section('script')
+    <script src="/js/racas.js"></script>
+@endsection
 
 @stop

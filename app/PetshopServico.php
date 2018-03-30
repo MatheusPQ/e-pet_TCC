@@ -12,4 +12,8 @@ class PetshopServico extends Model
         'petshop_id',
         'servico_id'
     ];
+
+    public function servico(){
+        return $this->belongsTo('App\Servicos');
+    }
 }

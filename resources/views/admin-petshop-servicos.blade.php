@@ -8,7 +8,7 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{{route('admin', ['id' => $petshop->id])}}">Home</a>
                 <a class="nav-item nav-link active" href="{{route('admin.servicos', ['id' => $petshop->id])}}">Serviços <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="{{route('admin.animais', ['id' => $petshop->id])}}">Animais</a>
+                <a class="nav-item nav-link" href="{{route('admin.servicoRaca', ['id' => $petshop->id])}}">Animais</a>
             </div>
         </div>
     </nav>
@@ -31,31 +31,31 @@
                                     <h4 class="card-title">Estética/Higiene</h4>
                                     <hr>
                                     <div class="form-group btn-group-toggle">
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(1 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="1"> Banho
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(2 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="2"> Tosa
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(3 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="3"> Tosa Higiênica
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(6 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="6"> Hidratação
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(7 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="7"> Loja
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(9 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="9"> Tintura de pelagem
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(10 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="10"> Escovação de dentes
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(11 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="11"> Corte de unhas
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(12 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="12"> Limpeza dos ouvidos
                                         </label>
                                     </div>
@@ -68,13 +68,13 @@
                                     <h4 class="card-title">Saúde</h4>
                                     <hr>
                                     <div class="form-group btn-group-toggle">
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(4 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="4"> Veterinário
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(5 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="5"> Pronto Socorro
                                         </label>
-                                        <label class="btn btn-secondary btn-block">
+                                        <label class="btn {{ in_array(8 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="8"> Medicamentos
                                         </label>
                                     </div>
@@ -84,9 +84,6 @@
     
                     </div> <!-- div.row -->
                 </div> <!-- div.card-body -->
-                {{--  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-block">Salvar!</button>
-                </div>  --}}
             </div>
         </section>
     </form>

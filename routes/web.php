@@ -28,8 +28,8 @@ Route::get('/petshop/create', 'PetshopController@create');
 // Route::delete('/petshop/{id}', 'PetshopController@destroy');
 
 Route::get('/admin/{id}', 'PetshopController@showAdmin')->name('admin');
-Route::get('/admin/{id}/animais', 'PetshopController@showAnimais')->name('admin.animais');
-Route::post('/admin/{id}/animais', 'PetshopController@novoAnimal')->name('admin.animais.novo');
+Route::get('/admin/{id}/animais', 'PetshopServicoRacaController@create')->name('admin.servicoRaca');
+Route::post('/admin/{id}/animais', 'PetshopServicoRacaController@store')->name('admin.servicoRaca.novo');
 Route::get('/admin/{id}/servicos', 'PetshopServicoController@create')->name('admin.servicos');
 Route::post('/admin/{id}/servicos', 'PetshopServicoController@store')->name('admin.servicos.store');
 

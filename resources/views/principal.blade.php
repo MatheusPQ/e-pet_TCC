@@ -11,6 +11,8 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/css/estilo.css">
         <link rel="stylesheet" href="/css/app.css">
+        {{--  <link rel="stylesheet" href="/css/material-icons.css">  --}}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         {{--  File Input  --}}
         {{--  <link href="/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
