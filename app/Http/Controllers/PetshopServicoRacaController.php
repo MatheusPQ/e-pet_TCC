@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Petshop;
 use App\PetshopServico;
+use App\PetshopServicoRaca;
 use App\Raca;
 
 class PetshopServicoRacaController extends Controller
@@ -18,6 +19,15 @@ class PetshopServicoRacaController extends Controller
     }
 
     public function store(Request $req){
+
+        $petshopservicoraca = [
+            "petshop_id" => $req->petshop_id,
+            "servico_id" => $req->servico_id,
+            "raca_id"    => $req->raca_id,
+            "preco"      => $req->preco
+        ];
+        
+        PetshopServicoRaca::create($petshopservicoraca);
 
     }
 }

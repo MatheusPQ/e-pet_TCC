@@ -14,4 +14,6 @@ class PetshopServicoRaca extends Model
         'raca_id',
         'preco',
     ];
+
+    protected $table = 'petshopservicoracas';
 }

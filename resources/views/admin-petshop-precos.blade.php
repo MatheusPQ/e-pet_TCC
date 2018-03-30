@@ -1,6 +1,8 @@
 @extends('principal')
 @section('conteudo')
 
+<input type="hidden" id="petshop_id" value="{{$petshop->id}}">
+
 <div class="container">
     <nav id="navbar-admin" class="navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Área administrativa</a>
@@ -53,8 +55,10 @@
                                     </div>
                                     <input id="{{ $petshop_servico->servico->id }}" type="text" class="form-control" name="preco[]" required>
                                     <div class="input-group-append">
-                                        <button class="btn btn-success" type="button"><i class="material-icons">check</i></button>
-                                        <button class="btn btn-danger" type="button">X</button>
+                                        {{--  <button class="btn btn-success" type="button"><i class="material-icons">check</i></button>
+                                        <button class="btn btn-danger" type="button">X</button>  --}}
+                                        <a name="btn-salvarPreco" data-servicoid="{{ $petshop_servico->servico->id }}" href="#" class="btn btn-success btn-salvarPreco"><i class="material-icons">check</i></a>
+                                        <a name="btn-zerarPreco"  data-servicoid="{{ $petshop_servico->servico->id }}" href="#" class="btn btn-danger btn-zerarPreco"><i class="material-icons">clear</i></a>
                                     </div>
                                 </div>
                             </div>
