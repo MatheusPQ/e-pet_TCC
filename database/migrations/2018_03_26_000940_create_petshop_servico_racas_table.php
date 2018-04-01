@@ -21,7 +21,7 @@ class CreatePetshopServicoRacasTable extends Migration
             $table->primary(['petshop_id', 'servico_id', 'raca_id'])->unsigned();
             
             $table->foreign('petshop_id')->references('id')->on('petshops')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('servico_id')->references('id')->on('servicos')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('servico_id')->references('servico_id')->on('petshop_servicos')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('raca_id')->references('id')->on('racas')->onDelete('cascade')->onUpdate('cascade');
 
 

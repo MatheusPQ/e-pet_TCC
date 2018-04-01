@@ -28,6 +28,11 @@ class PetshopServicoRacaController extends Controller
         ];
         
         PetshopServicoRaca::create($petshopservicoraca);
+    }
 
+    public function buscarPrecos($id){
+        // dd($id);
+        $psr = PetshopServicoRaca::where('petshop_id', $id)->get();
+        return $psr;
     }
 }
