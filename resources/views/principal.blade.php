@@ -10,10 +10,13 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/css/estilo.css">
+        <link rel="stylesheet" href="/css/timepicker.css">
         <link rel="stylesheet" href="/css/app.css">
         {{--  <link rel="stylesheet" href="/css/material-icons.css">  --}}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script>
         {{--  File Input  --}}
         {{--  <link href="/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
         <script src="/js/jquery-3.3.1.min.js"></script>
@@ -119,6 +122,7 @@
 
     
     <script src="/js/app.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script>
     @yield('script')
     {{--  <script src="/js/function.js"></script>   --}}
     {{--  <script src="/js/carrinho.js"></script>   --}}

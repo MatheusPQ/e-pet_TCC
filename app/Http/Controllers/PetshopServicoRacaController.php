@@ -23,16 +23,24 @@ class PetshopServicoRacaController extends Controller
         $petshopservicoraca = [
             "petshop_id" => $req->petshop_id,
             "servico_id" => $req->servico_id,
-            "raca_id"    => $req->raca_id,
-            "preco"      => $req->preco
+            "raca_id"    => $req->raca_id
+            // "preco"      => $req->preco
         ];
         
-        PetshopServicoRaca::create($petshopservicoraca);
+        if(PetshopServicoRaca::where($petshopservicoraca)->count()){
+            PetshopServicoRaca::where($petshopservicoraca)->update(['preco' => $req->preco]);
+        } else {
+            $petshopservicoraca += [
+                "preco" => $req->preco
+            ];
+            PetshopServicoRaca::create($petshopservicoraca);
+        }
     }
 
-    public function buscarPrecos($id){
+    public function buscarPrecos(Request $req, $petshop_id){
         // dd($id);
-        $psr = PetshopServicoRaca::where('petshop_id', $id)->get();
+        $raca_id = $req->input('raca_id');
+        $psr = PetshopServicoRaca::where('petshop_id', $petshop_id)->where('raca_id', $raca_id)->get();
         return $psr;
     }
 }

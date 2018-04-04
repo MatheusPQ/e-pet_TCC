@@ -92,7 +92,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="uf">UF</label>
         
-                                    <input id="uf" type="text" class="form-control{{ $errors->has('uf') ? ' is-invalid' : '' }}" name="uf" required>
+                                    <input id="uf" type="text" class="form-control{{ $errors->has('uf') ? ' is-invalid' : '' }}" name="uf" maxlength="2" required>
     
                                     @if ($errors->has('uf'))
                                         <span class="invalid-feedback">
@@ -161,14 +161,19 @@
                             <div class="form-row">
                                 <div class="form-group col-6 col-md-4">
                                     <label for="horarioAbertura">Das</label>
+                                    <div class="input-group">
+                                        <input id="horarioAbertura" type="text" class="form-control{{ $errors->has('horarioAbertura') ? ' is-invalid' : '' }}" name="horarioAbertura">
         
-                                    <input id="horarioAbertura" type="text" class="form-control{{ $errors->has('horarioAbertura') ? ' is-invalid' : '' }}" name="horarioAbertura">
-    
-                                    @if ($errors->has('horarioAbertura'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('horarioAbertura') }}</strong>
-                                        </span>
-                                    @endif
+                                        @if ($errors->has('horarioAbertura'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('horarioAbertura') }}</strong>
+                                            </span>
+                                        @endif
+                                        <div class="input-group-append">
+                                            <a href="#" class="btn btn-success input-group-addon">X</a>
+                                        </div>
+                                    </div>
+        
                                 </div>
 
                                 <div class="form-group col-6 col-md-4">
@@ -210,8 +215,8 @@
         </div>
     </div>
 
-{{--  @section('script')
-    <script src="/js/fileinput2.js"></script>
-@endsection  --}}
+ @section('script')
+    <script src="/js/cadastrarPetshop.js"></script>
+@endsection 
 
 @stop

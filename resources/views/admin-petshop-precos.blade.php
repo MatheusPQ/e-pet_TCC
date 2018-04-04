@@ -53,12 +53,16 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">R$</span>
                                     </div>
-                                    <input id="{{ $petshop_servico->servico->id }}" type="text" class="form-control" name="preco[]" required>
+                                    <input id="{{ $petshop_servico->servico->id }}" type="text" class="form-control input-preco" name="preco[]">
                                     <div class="input-group-append">
                                         {{--  <button class="btn btn-success" type="button"><i class="material-icons">check</i></button>
                                         <button class="btn btn-danger" type="button">X</button>  --}}
-                                        <a name="btn-salvarPreco" data-servicoid="{{ $petshop_servico->servico->id }}" href="#" class="btn btn-success btn-salvarPreco"><i class="material-icons">check</i></a>
-                                        <a name="btn-zerarPreco"  data-servicoid="{{ $petshop_servico->servico->id }}" href="#" class="btn btn-danger btn-zerarPreco"><i class="material-icons">clear</i></a>
+                                        <a name="btn-salvarPreco" data-servicoid="{{ $petshop_servico->servico->id }}" href="#" class="btn btn-success btn-salvarPreco">
+                                            <i class="material-icons">check</i>
+                                        </a>
+                                        {{-- <a name="btn-zerarPreco"  data-servicoid="{{ $petshop_servico->servico->id }}" href="#" class="btn btn-danger btn-zerarPreco">
+                                            <i class="material-icons">clear</i>
+                                        </a> --}}
                                     </div>
                                 </div>
                             </div>

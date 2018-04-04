@@ -2,13 +2,10 @@ $(document).ready(function(){
     
     var petshop_id = $('#petshop_id').val();
     
-    $('input[name^="preco"]').mask('000.000.000.000.000,00', { placeholder: '0,00'});
+    $('input[name^="preco"]').mask('000000.00', { reverse: true, placeholder: '0.00'});
 
     $('.input-group').on('click', 'a.btn-salvarPreco', function(event){
-        // console.log('CLICOU');
         event.preventDefault();
-
-        //var petshop_id = $('#petshop_id').val();
         var servico_id = $(this).data('servicoid');
         var raca_id = $('#raca').val();
         var preco = $('input#'+servico_id).val();
@@ -25,28 +22,38 @@ $(document).ready(function(){
             method: "POST",
             data: dados,
             success: function() {
-                console.log('SALVOU!!!');
             }
         });
         
     });
 
-    buscarPrecos(petshop_id);
+    buscarPrecos(petshop_id, $('#raca').val());
 
     $('#raca').change(() =>{
-        buscarPrecos(petshop_id);
+        buscarPrecos(petshop_id, $('#raca').val());
     });
 });
 
-function buscarPrecos(petshop_id){
+function buscarPrecos(petshop_id, raca_id){
+
+    var dados = {
+        petshop_id: petshop_id,
+        raca_id: raca_id
+    }
+
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
     $.ajax({
         url: "/admin/"+petshop_id+"/buscarPrecos",
+        data: dados,
         method: "GET",
         success: (data) => {
-            console.log(data);
+            $('.input-group input.input-preco').each( (index, element) => {
+                $(element).val(null);                
+            });
+
             $(data).each( (index) => {
-                $('#'+data[index].servico_id).val(data[index].preco);                
+                var preco = data[index].preco;
+                $('#'+data[index].servico_id).val(preco);  
             });
             
         }
