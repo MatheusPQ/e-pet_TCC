@@ -13859,8 +13859,7 @@ module.exports = Cancel;
 
 __webpack_require__(12);
 __webpack_require__(44);
-__webpack_require__(45);
-module.exports = __webpack_require__(46);
+module.exports = __webpack_require__(45);
 
 
 /***/ }),
@@ -13899,7 +13898,6 @@ window._ = __webpack_require__(14);
 window.Popper = __webpack_require__(4).default;
 
 __webpack_require__(16);
-// require('material-design-icons');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -47950,12 +47948,6 @@ if (false) {
 
 /***/ }),
 /* 45 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 46 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

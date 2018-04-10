@@ -16,4 +16,8 @@ class PetshopServico extends Model
     public function servico(){
         return $this->belongsTo('App\Servicos');
     }
+
+    public function petshop(){
+        return $this->belongsTo('App\Petshop');
+    }
 }

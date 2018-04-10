@@ -34,92 +34,63 @@
     <section class="topo3">
         <div class="form-group">
           <label for="exampleInputEmail1">Buscar petshop:</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Buscar...">
         </div>
     </section>
+
     <section class="conteudo">
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6">
+        {{-- <div class="card-columns"> --}}
+        {{-- <div class="card-group"> --}}
+            @forelse($petshops as $petshop)
+
                 <div class="card">
-                    <img class="card-img-top" src="/img/Imagem18.jpg" alt="Card image cap">
+                        {{-- <img class="card-img-top" src="/img/Imagem18.jpg" alt="Card image cap"> --}}
                     <div class="card-body">
-                        <h4 class="card-title">Petshop #1</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">São Bernardo - SP</h6>
+                        <h4 class="card-title">{{ $petshop->nomeFantasia }}</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->cidade }} - {{ $petshop->uf }} | <span class="card-text avaliacao">Avaliação: 4.3/5</span></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->endereco }}, nº 000</h6>
                         <hr>
-                        <p class="card-text avaliacao">Avaliação: 4.3/5</p>
-                        <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
-                        <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p>
+                        <p class="card-text"> <b>Serviços oferecidos: </b>
+                            @forelse($petshop->petshopservicos as $petshopservico)
+                                {{ $loop->last ? $petshopservico->servico->servico : $petshopservico->servico->servico.', ' }}
+                            @empty
+                                Nenhum serviço disponível.
+                            @endforelse
+                        </p>
+                        {{-- <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
+                        <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p> --}}
+                        <hr>
                         <a href="#" class="btn btn-success btn-block">Marcar horário</a>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card">
-                    <img class="card-img-top" src="/img/Imagem19.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Petshop #2</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">São Caetano - SP</h6>
-                        <hr>
-                        <p class="card-text avaliacao">Avaliação: 5/5</p>
-                        <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
-                        <p class="card-text">Tosa: <span class="indisponivel"> Indisponível</span></p>
-                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
-                    </div>
+
+            @empty
+                <p>Oops! Houve um erro ao carregar os petshops! Tente novamente!</p>
+            @endforelse
+            {{-- <div class="card">
+                <img class="card-img-top" src="/img/Imagem18.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">TESTE</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">CIDADE - UF</h6>
+                    <hr>
+                    <p class="card-text avaliacao">Avaliação: 4.3/5</p>
+                    <hr>
+                    <p class="card-text">
+                        UM, DOIS, TRÊS, UM, DOIS, TRÊS, UM, DOIS, TRÊS, UM, DOIS, TRÊS, UM, DOIS, TRÊS, UM, DOIS, TRÊS, UM, DOIS, TRÊS, UM, DOIS, TRÊS, UM, DOIS, TRÊS, 
+                    </p>
+                    <hr>
+                    <a href="#" class="btn btn-success btn-block">Marcar horário</a>
                 </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card">
-                    <img class="card-img-top" src="/img/Imagem15.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Petshop #3</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">São Bernardo - SP</h6>
-                        <hr>
-                        <p class="card-text avaliacao">Avaliação: 3.2/5</p>
-                        <p class="card-text">Banho: <span class="preco"> R$20,00</span></p>
-                        <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p>
-                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card">
-                    <img class="card-img-top" src="/img/main.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Petshop #4</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Mauá - SP</h6>
-                        <hr>
-                        <p class="card-text avaliacao">Avaliação: 4.2/5</p>
-                        <p class="card-text">Banho: <span class="preco"> R$30,00</span></p>
-                        <p class="card-text">Tosa: <span class="preco"> R$30,00</span></p>
-                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card">
-                    <img class="card-img-top" src="/img/Imagem22.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Petshop #5</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Santo André - SP</h6>
-                        <hr>
-                        <p class="card-text avaliacao">Avaliação: 4/5</p>
-                        <p class="card-text">Banho: <span class="preco"> R$20,00</span></p>
-                        <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p>
-                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+            </div> --}}
+        {{-- </div> --}}
+        {{-- </div> --}}
     </section>
 
 </div>
-            
 
+@section('script')
+    <script src="/js/index.js"></script>
+@endsection
 
 
 @stop

@@ -64,18 +64,17 @@ section {
   margin-right: 0 !important;
 }
 
+.conteudo .card {
+  margin-bottom: 10px;
+}
+
 .conteudo .card-img-top {
   height: 180px;
   max-height: 180px;
 }
 
-.conteudo .card {
-  max-width: 290px;
-  margin: 5px 0px !important;
-}
-
 .conteudo .card-body {
-  padding: 15px !important;
+  padding: 15px;
 }
 
 .conteudo .card-body hr {
@@ -87,9 +86,10 @@ section {
   margin-bottom: 0px;
 }
 
-.conteudo .card-body p.avaliacao {
+.conteudo .card-body .avaliacao {
   font-weight: bold;
   margin-bottom: 5px;
+  display: inline;
 }
 
 .conteudo .card-body a {

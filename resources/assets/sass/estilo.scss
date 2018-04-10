@@ -1,4 +1,6 @@
 @import "variables";
+// Bootstrap
+// @import '~bootstrap/scss/bootstrap';
 
 * {
     margin: 0;
@@ -6,11 +8,11 @@
     box-sizing: border-box;
 }
 
-body {
+// body {
     // background: url("/img/jumbotronEsc.jpg");
     // background-size: cover;
     // background-position: center;
-}
+// }
 
 // #bg {
 //     position: fixed; 
@@ -102,23 +104,18 @@ section {
     margin-right: 0 !important;
 }
 
+.conteudo .card {
+    margin-bottom: 10px;
+}
+
 .conteudo .card-img-top {
     height: 180px;
     max-height: 180px;
 }
 
-.conteudo .card {
-    max-width: 290px;
-    margin: 5px 0px !important;
-}
-
 .conteudo .card-body {
-    padding: 15px !important;
+    padding: 15px;
 }
-
-// .card-body li {
-//     list-style: none;
-// }
 
 .conteudo .card-body hr {
     margin-top: 10px;
@@ -129,14 +126,20 @@ section {
     margin-bottom: 0px;
 }
 
-.conteudo .card-body p.avaliacao {
+.conteudo .card-body .avaliacao {
     font-weight: bold;
     margin-bottom: 5px;
+    display: inline;
 }
 
 .conteudo .card-body a {
     margin-top: 5px !important;
 }
+
+// div.card-cidade-avaliacao h6,
+// div.card-cidade-avaliacao p {
+//     display: inline !important;
+// }
 
 span.preco {
     // font-size: 20px;

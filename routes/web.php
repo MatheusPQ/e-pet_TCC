@@ -11,15 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', 'PetshopCon');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/petshop', 'PetshopController@index');
+Route::get('/', 'PetshopController@index');
 Route::post('/petshop', 'PetshopController@store')->name('petshop.store');
 Route::get('/petshop/create', 'PetshopController@create');
 // Route::get('/petshop/{id}', 'PetshopController@show');

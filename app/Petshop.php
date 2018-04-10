@@ -23,4 +23,8 @@ class Petshop extends Model
         'horarioAbertura',
         'horarioFechamento'
     ];
+
+    public function petshopservicos(){
+        return $this->hasMany('App\PetshopServico');
+    }
 }
