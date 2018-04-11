@@ -27,4 +27,8 @@ class Petshop extends Model
     public function petshopservicos(){
         return $this->hasMany('App\PetshopServico');
     }
+
+    public function petshopservicoracas(){
+        return $this->hasMany('App\PetshopServicoRaca');
+    }
 }

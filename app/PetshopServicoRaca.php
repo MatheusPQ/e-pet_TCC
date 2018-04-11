@@ -16,4 +16,8 @@ class PetshopServicoRaca extends Model
     ];
 
     protected $table = 'petshopservicoracas';
+
+    public function raca(){
+        return $this->belongsTo('App\Raca');
+    }
 }

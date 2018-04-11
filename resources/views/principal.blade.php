@@ -124,7 +124,7 @@
 
     
     <script src="/js/app.js"></script> 
-    <script src="/js/masonry.js"></script>
+    {{-- <script src="/js/masonry.js"></script> --}}
     {{-- <script src="/js/imagesloaded.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script>
     @yield('script')

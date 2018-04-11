@@ -60,7 +60,7 @@
                         {{-- <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
                         <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p> --}}
                         <hr>
-                        <a href="#" class="btn btn-success btn-block">Marcar horário</a>
+                        <a href="{{route('petshop.show', ['id' => $petshop->id]) }}" class="btn btn-success btn-block">Marcar horário</a>
                     </div>
                 </div>
 

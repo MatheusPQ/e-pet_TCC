@@ -96,6 +96,14 @@ section {
   margin-top: 5px !important;
 }
 
+.petshop-servicos-precos .card {
+  margin-bottom: 30px;
+}
+
+.petshop-servicos-selecionar .card {
+  margin-bottom: 5px;
+}
+
 span.preco {
   font-weight: bold;
   color: #389c38;

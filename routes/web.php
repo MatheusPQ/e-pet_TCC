@@ -15,12 +15,12 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/', 'PetshopController@index');
+// Route::get('/', 'PetshopController@index');
 Route::post('/petshop', 'PetshopController@store')->name('petshop.store');
 Route::get('/petshop/create', 'PetshopController@create');
-// Route::get('/petshop/{id}', 'PetshopController@show');
+Route::get('/petshop/{id}', 'PetshopController@show')->name('petshop.show');
 // Route::get('/petshop/{id}/edit', 'PetshopController@edit');
 // Route::put('/petshop/{id}', 'PetshopController@update');
 // Route::delete('/petshop/{id}', 'PetshopController@destroy');
