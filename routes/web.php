@@ -53,3 +53,6 @@ Route::get('/petshopServico/{id}/create', 'PetshopServicoController@create')->na
 
 // Route::get('/servico/{id}/addServicos', 'ServicosController@addServicos')->name('servico.addServicos');
 // Route::post('/servico/save', 'ServicosController@save')->name('servico.save');
+
+
+Route::post('/evento', 'EventoController@store')->name('evento.store');

@@ -1,6 +1,10 @@
 @extends('principal')
 @section('conteudo')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('libs/fullcalendar/fullcalendar.css') }}">
+@endpush
+
 <div class="container">
     <section class="petshop-servicos-topo">
         {{-- <div class="row"> --}}
@@ -89,10 +93,33 @@
                     <div class="card">
                         <h5 class="card-header"> <b>Marcar horário</b> </h5>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <input type="time" name="" class="form-control">
-                            {{-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                            <h5 class="card-title">Selecione a raça e o horário</h5>
+                            <form method="POST" action="{{ route('evento.store') }}">
+                                
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="raca">Raça</label>
+                                        <select name="raca" id="raca" class="form-control">
+                                            {{-- @foreach($racas as $raca)
+                                                <option value="{{ $raca->id }}"> {{ $raca->raca }} </option>
+                                            @endforeach --}}
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="start">Horário</label>
+                                        <input type="time" name="start" id="start" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col">
+                                        <h5 class="preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h5>
+                                    </div>
+                                </div>
+                            
+                            </form>
+
+                            <div id="calendar"></div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +133,7 @@
 
 
 
-{{-- @section('script')
-    <script src="/js/index.js"></script>
-@endsection --}}
+@section('script')
+    <script src="/js/petshop.js"></script>
+@endsection
 @stop

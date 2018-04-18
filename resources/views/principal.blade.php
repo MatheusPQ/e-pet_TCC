@@ -12,12 +12,12 @@
         <link rel="stylesheet" href="/css/estilo.css">
         <link rel="stylesheet" href="/css/timepicker.css">
         <link rel="stylesheet" href="/css/app.css">
-        {{--  <link rel="stylesheet" href="/css/material-icons.css">  --}}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script>
-        
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script> --}}
+
+        @stack('styles')        
 
         {{--  File Input  --}}
         {{--  <link href="/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
@@ -55,11 +55,7 @@
                         {{--  <li class="nav-item"><a class="nav-link">{{ Auth::user()->name }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('logout')}}" 
                                                 onclick="event.preventDefault(); 
-                                                        document.getElementById('logout-form').submit();">Logout</a></li>
-    
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>  --}}
+                                                        document.getElementById('logout-form').submit();">Logout</a></li> --}}
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -118,17 +114,12 @@
                 </div>
             </div>
         </footer>
-
     </body>
 
-
-    
-    <script src="/js/app.js"></script> 
-    {{-- <script src="/js/masonry.js"></script> --}}
-    {{-- <script src="/js/imagesloaded.js"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="{{ asset('libs/fullcalendar/lib/moment.min.js') }}"></script>
+    <script src="{{ asset('libs/fullcalendar/fullcalendar.js') }}"></script>
+    <script src="{{ asset('libs/fullcalendar/locale/pt-br.js') }}"></script>
     @yield('script')
-    {{--  <script src="/js/function.js"></script>   --}}
-    {{--  <script src="/js/carrinho.js"></script>   --}}
 
 </html>
