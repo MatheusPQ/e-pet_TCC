@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Petshop;
 use App\PetshopUser;
+use App\PetshopServicoRaca;
 
 class PetshopController extends Controller
 {
@@ -55,8 +56,11 @@ class PetshopController extends Controller
     }
 
     public function show($id){
-        $petshop = Petshop::find($id);
-        return view('petshop', compact('petshop'));
+        // $petshop = Petshop::find($id);
+        $petshop = Petshop::with(['petshopservicos.servico', 'petshopservicoracas.raca'])->where('id', $id)->first();
+        $racas = PetshopServicoRaca::select('raca_id')->where('petshop_id', $id)->distinct()->with('raca')->get();
+        // dd($racas);
+        return view('petshop', compact('petshop', 'racas'));
     }
 
     public function showAdmin($id){

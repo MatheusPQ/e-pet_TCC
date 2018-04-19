@@ -42,45 +42,56 @@
     </section>
 
     <section class="petshop-servicos-precos">
-        @if($petshop->petshopservicos->count() > 0)
-            <div class="row">
-                @foreach($petshop->petshopservicos as $petshopservico)
-                    <div class="col-md-4">
-                        <div class="card">
-                            <h5 class="card-header"><b>{{ $petshopservico->servico->servico }}</b></h5>
-                            <div class="card-body">
-                                @foreach($petshop->petshopservicoracas as $petshopservicoraca)
-                                    @if($petshopservicoraca->servico_id == $petshopservico->servico_id)
-                                        <p class="card-text mb-0">{{ $petshopservicoraca->raca->raca}}:
-                                            @if(!isset($petshopservicoraca->preco) || empty($petshopservicoraca->preco))
-                                                <span class="indisponivel">Não definido</span>
-                                            @else
-                                                <span class="preco"> R${{$petshopservicoraca->preco}}</span>
-                                            @endif
-                                        </p>
-                                        
-                                {{-- <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
-                                <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p> --}}
-                                    @endif
-                                @endforeach
+            <div class="card">
+                <h5 class="card-header"><strong>Serviços e preços</strong></h5>
+                <div class="card-body">
+                    {{-- <h5 class="card-title">Special title treatment</h5> --}}
+                    <p class="card-text">Todos os serviços (e seus respectivos preços) oferecidos pelo petshop.</p>
+                    @if($petshop->petshopservicos->count() > 0)
+                        <div class="row">
+                            @foreach($petshop->petshopservicos as $petshopservico)
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        {{-- <h5 class="card-header">{{ $petshopservico->servico->servico }}</h5> --}}
+                                        <div class="card-body">
+                                            <h5 class="card-title"><strong>{{ $petshopservico->servico->servico }}</strong></h5>
+                                            <hr>
+                                            
+                                            @foreach($petshop->petshopservicoracas as $petshopservicoraca)
+                                                @if($petshopservicoraca->servico_id == $petshopservico->servico_id)
+                                                    <p class="card-text mb-0">{{ $petshopservicoraca->raca->raca}}:
+                                                        @if(!isset($petshopservicoraca->preco) || empty($petshopservicoraca->preco))
+                                                            <span class="indisponivel">Não definido</span>
+                                                        @else
+                                                            <span class="preco"> R${{$petshopservicoraca->preco}}</span>
+                                                        @endif
+                                                    </p>
+                                                    
+                                            {{-- <p class="card-text">Banho: <span class="preco"> R$15,00</span></p>
+                                            <p class="card-text">Tosa: <span class="preco"> R$15,00</span></p> --}}
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="card border-danger mb-3">
+                            <div class="card-body text-danger">
+                                <h5 class="card-title">Este petshop ainda não publicou nenhum serviço!</h5>
+                                <p class="card-text">Volte mais tarde.</p>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <div class="card border-danger mb-3">
-                <div class="card-body text-danger">
-                    <h5 class="card-title">Este petshop ainda não publicou nenhum serviço!</h5>
-                    <p class="card-text">Volte mais tarde.</p>
+                    @endif
                 </div>
+
             </div>
-        @endif
     </section>
 
     <section class="petshop-servicos-selecionar">
         <div class="row">
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     @foreach($petshop->petshopservicos as $petshopservico)
                         <a class="card btn btn-light">
                             <div class="card-body">
@@ -88,36 +99,50 @@
                             </div>
                         </a>
                     @endforeach
-                </div>
-                <div class="col-md-8">
+                </div> --}}
+                <div class="col">
                     <div class="card">
                         <h5 class="card-header"> <b>Marcar horário</b> </h5>
                         <div class="card-body">
-                            <h5 class="card-title">Selecione a raça e o horário</h5>
-                            <form method="POST" action="{{ route('evento.store') }}">
-                                
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="raca">Raça</label>
-                                        <select name="raca" id="raca" class="form-control">
-                                            {{-- @foreach($racas as $raca)
-                                                <option value="{{ $raca->id }}"> {{ $raca->raca }} </option>
-                                            @endforeach --}}
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="start">Horário</label>
-                                        <input type="time" name="start" id="start" class="form-control">
-                                    </div>
-                                </div>
+                            <h5 class="card-title">Selecione o serviço</h5>
 
-                                <div class="form-row">
-                                    <div class="form-group col">
-                                        <h5 class="preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h5>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                @foreach($petshop->petshopservicos as $petshopservico)
+                                    <label class="btn btn-outline-primary">
+                                        <input type="radio" name="servicos" id="{{$petshopservico->servico_id}}" autocomplete="off" checked> {{$petshopservico->servico->servico}}
+                                    </label>
+                                @endforeach
+                            </div>
+
+                            <hr>
+                            <div id="racas_horarios">
+                                <h5 class="card-title">Selecione a raça e o horário</h5>
+                                <form method="POST" action="{{ route('evento.store') }}">
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="raca">Raça</label>
+                                            <select name="raca" id="raca" class="form-control">
+                                                @foreach($racas as $raca)
+                                                    <option value="{{ $raca->raca_id }}"> {{ $raca->raca->raca }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="start">Horário</label>
+                                            <input type="time" min="{{ $petshop->horarioAbertura }}" max="{{ $petshop->horarioFechamento }}" name="start" id="start" class="form-control">
+                                        </div>
                                     </div>
-                                </div>
-                            
-                            </form>
+    
+                                    <div class="form-row">
+                                        <div class="form-group col bg-dark p-3 text-white">
+                                            <h4 class="mb-0 preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h4>
+                                        </div>
+                                    </div>
+                                
+                                </form>
+
+                            </div>
 
                             <div id="calendar"></div>
                         </div>
