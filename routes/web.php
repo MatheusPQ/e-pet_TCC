@@ -32,6 +32,9 @@ Route::get('/admin/{id}/servicos', 'PetshopServicoController@create')->name('adm
 Route::post('/admin/{id}/servicos', 'PetshopServicoController@store')->name('admin.servicos.store');
 Route::get('/admin/{id}/buscarPrecos', 'PetshopServicoRacaController@buscarPrecos');
 
+Route::get('/petshopservicoraca/{id}/buscarPreco', 'PetshopServicoRacaController@buscarPreco');
+
+
 
 
 

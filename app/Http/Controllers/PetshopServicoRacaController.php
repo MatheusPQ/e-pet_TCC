@@ -43,4 +43,17 @@ class PetshopServicoRacaController extends Controller
         $psr = PetshopServicoRaca::where('petshop_id', $petshop_id)->where('raca_id', $raca_id)->get();
         return $psr;
     }
+
+    public function buscarPreco(Request $req){
+        // dd($req->all());
+        $where = [
+            "petshop_id" => $req->petshop_id,
+            "servico_id" => $req->servico_id,
+            "raca_id"    => $req->raca_id
+        ];
+
+        $petshopservicoraca = PetshopServicoRaca::where($where)->first();
+
+        return response()->json($petshopservicoraca);
+    }
 }
