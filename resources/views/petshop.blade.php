@@ -140,9 +140,13 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="start">Horário (aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}} )</label>
-                                            <input type="time" min="{{ $petshop->horarioAbertura }}" max="{{ $petshop->horarioFechamento }}" name="start" id="start" class="form-control" required>
+                                        <div class="form-group col-md-3">
+                                            <label for="start">Horário (aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}})</label>
+                                            <input type="time" min="{{ $petshop->horarioAbertura }}" max="{{ $petshop->horarioFechamento }}" name="hora" id="hora" class="form-control" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="date">Data</label>
+                                            <input type="date" name="data" id="data" class="form-control" required>
                                         </div>
                                     </div>
     
@@ -152,7 +156,11 @@
                                         </div>
                                     </div>
 
+
                                     <input type="hidden" id="petshop_id" name="petshop_id" value="{{ $petshop->id }}">
+                                    <input type="hidden" id="start" name="start">
+                                    <input type="hidden" id="end" name="end">
+
                                     
                                     <div class="form-row">
                                         <div class="form-group col">
@@ -163,6 +171,7 @@
                             </form>
 
                             {{-- </div> --}}
+                            <button type="button" id="btn-teste" class="btn btn-primary btn-block mb-2">TESTE</button>
 
                             <div id="calendar"></div>
                         </div>

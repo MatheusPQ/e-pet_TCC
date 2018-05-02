@@ -21,6 +21,13 @@ class PetshopController extends Controller
         return view('index', compact('petshops'));
     }
 
+    public function mostrarMeusPetshops(){
+        $user_id = Auth::id();
+        $petshops = PetshopUser::with('petshop.petshopservicos.servico')->where('user_id', $user_id)->get();
+        // dd($petshops);
+        return view('meuspetshops', compact('petshops'));
+    }
+
     public function create(){
         return view('cadastro-petshop');
     }

@@ -12,4 +12,8 @@ class PetshopUser extends Model
         'petshop_id',
         'user_id'
     ];
+
+    public function petshop(){
+        return $this->belongsTo('App\Petshop');
+    }
 }

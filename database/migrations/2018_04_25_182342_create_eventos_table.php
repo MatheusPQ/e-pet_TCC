@@ -15,6 +15,13 @@ class CreateEventosTable extends Migration
     {
         Schema::create('eventos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('petshop_id')->unsigned();
+
+            $table->foreign('petshop_id')->references('id')->on('petshops')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }
