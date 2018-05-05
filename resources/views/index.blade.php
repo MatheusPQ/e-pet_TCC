@@ -46,9 +46,12 @@
                 <div class="card">
                         {{-- <img class="card-img-top" src="/img/Imagem18.jpg" alt="Card image cap"> --}}
                     <div class="card-body">
+                        <h4 class="pull-right"><i class="icon-star" style="color: #FFD119;"></i> {{ $petshop->media_avaliacoes }} <small class="text-muted">/ 5</small></h4>
                         <h4 class="card-title">{{ $petshop->nomeFantasia }}</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->cidade }} - {{ $petshop->uf }} | <span class="card-text avaliacao">Avaliação: 4.3/5</span></h6>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->endereco }}, nº 000</h6>
+                        {{-- <span class="card-text avaliacao">Avaliação: 4.3/5</span> --}}
+                        {{-- <span class="avaliacao"><i class="icon-star" style="color: #FFD119;"></i> {{ $petshop->media_avaliacoes }} <small class="text-muted">/ 5</small></span> --}}
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->cidade }} - {{ $petshop->uf }} </h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->endereco }}, nº {{ $petshop->numero }}</h6>
                         <hr>
                         <p class="card-text"> <b>Serviços oferecidos: </b>
                             @forelse($petshop->petshopservicos as $petshopservico)

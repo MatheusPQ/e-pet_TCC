@@ -31,4 +31,17 @@ class Petshop extends Model
     public function petshopservicoracas(){
         return $this->hasMany('App\PetshopServicoRaca');
     }
+
+    public function avaliacoes(){
+        return $this->hasMany('App\Avaliacao');
+    }
+
+    public function recalcularMedia()
+    {
+      $avaliacoes = $this->avaliacoes();
+      $mediaAvaliacoes = $avaliacoes->avg('avaliacao');
+      $this->media_avaliacoes = round($mediaAvaliacoes,1);
+      $this->total_avaliacoes = $avaliacoes->count();
+      $this->save();
+    }
 }

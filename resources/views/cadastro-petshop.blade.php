@@ -87,7 +87,7 @@
                                         @endif
                                     </div>
     
-                                    <div class="form-group col-md-9">
+                                    <div class="form-group col-md-7">
                                         <label for="endereco">Endereço</label>
             
                                         <input id="endereco" type="text" class="form-control{{ $errors->has('endereco') ? ' is-invalid' : '' }}" name="endereco" required>
@@ -95,6 +95,18 @@
                                         @if ($errors->has('endereco'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('endereco') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+    
+                                    <div class="form-group col-md-2">
+                                        <label for="numero">Nº</label>
+            
+                                        <input id="numero" type="number" class="form-control{{ $errors->has('numero') ? ' is-invalid' : '' }}" name="numero" required>
+        
+                                        @if ($errors->has('numero'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('numero') }}</strong>
                                             </span>
                                         @endif
                                     </div>

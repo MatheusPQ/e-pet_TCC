@@ -45,7 +45,58 @@ $(document).ready(function(){
 		
 	});
 	// carregarCalendar();
+	$('.starrr').starrr();
+	
 
+	$('.starrr').on('starrr:change', function(e, value){
+		// var ratingsField = $('#ratings-hidden');
+		// input_avaliacao.val(value);
+		
+		dados = {
+			petshop_id: $('#petshop_id').val(),
+			avaliacao: value
+		}
+		$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+		$.ajax({
+			url: '/petshop/salvarAvaliacao',
+			method: "POST",
+			data: dados,
+			success: function(data){				
+				$('h5.pull-right').html('<i class="icon-star" style="color: #FFD119;"></i> '+ data.media_avaliacoes +' <small class="text-muted">/ 5</small>');
+				$('small#total_avaliacoes').text('Total de avaliações: '+ data.total_avaliacoes);
+			},
+			error: function(){				
+			}
+		});
+		
+	});
+
+	// $('.starrr').starrr({
+	// 	change: function(e, value){
+	// 		// var ratingsField = $('#ratings-hidden');
+	// 		// input_avaliacao.val(value);
+			
+	// 		dados = {
+	// 			petshop_id: $('#petshop_id').val(),
+	// 			avaliacao: value
+	// 		}
+	// 		$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+	// 		$.ajax({
+	// 			url: '/petshop/salvarAvaliacao',
+	// 			method: "POST",
+	// 			data: dados,
+	// 			success: function(){
+	// 				console.log("td certo");
+					
+	// 			},
+	// 			error: function(){
+	// 				console.log("deu merda");
+					
+	// 			}
+	// 		});
+	// 	}
+		
+	// });
 
 	// ERRO AO INCREMENTAR 30 MINUTOS NO HORÁRIO... TALVEZ REMOVER O FULLCALENDAR E USAR UMA TABELA NORMAL PARA MOSTRAR EVENTOS? (tipo site gndi)
 	$('#btn-marcarHorario').click(function(event){
@@ -131,8 +182,27 @@ $(document).ready(function(){
 	});
 
 	buscarPreco( $('label.btn.active').find("input").val() ); //id do serviço como argumento.
+	buscarAvaliacao();
 	
 });
+
+function buscarAvaliacao(){
+	
+	dados = {
+		petshop_id: $('#petshop_id').val(),
+		user_id: $('#user_id').val()
+	}	
+
+	$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+	$.ajax({
+		url: '/petshop/buscarAvaliacao',
+		method: "GET",
+		data: dados,
+		success: function(data){			
+			$('.starrr').starrr('setRating', data.avaliacao);			
+		}
+	});
+}
 
 function buscarEventosDeHoje(hoje){
 	var eventosHoje = $('#calendar').fullCalendar('clientEvents', function(evt){

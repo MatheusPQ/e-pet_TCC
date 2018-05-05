@@ -5,11 +5,17 @@
     <link rel="stylesheet" href="{{ asset('libs/fullcalendar/fullcalendar.css') }}">
 @endpush
 
+<input type="hidden" id="petshop_id" name="petshop_id" value="{{ $petshop->id }}">
+<input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
+<input type="hidden" id="start" name="start">
+<input type="hidden" id="end" name="end">
+
 <div class="container">
     <section class="petshop-servicos-topo">
         {{-- <div class="row"> --}}
             <div class="card">
                 <div class="card-body">
+                    <h5 class="pull-right"><i class="icon-star" style="color: #FFD119;"></i> {{ $petshop->media_avaliacoes }} <small class="text-muted">/ 5</small></h5>
                     <h5 class="card-title"><b>{{ $petshop->nomeFantasia }}</b></h5>
                     {{-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> --}}
                     <hr>
@@ -33,6 +39,10 @@
                         <tr>
                             <td> <b>E-mail: </b></td>
                             <td> {{ $petshop->email }}</td>
+                        </tr>
+                        <tr>
+                            <td> <b>Avalie: </b></td>
+                            <td> <div class="starrr"></div><br> <small id="total_avaliacoes" class="text-muted">Total de avaliações: </small></td>
                         </tr>
 
                     </table>
@@ -155,12 +165,6 @@
                                             <h4 class="mb-0 preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h4>
                                         </div>
                                     </div>
-
-
-                                    <input type="hidden" id="petshop_id" name="petshop_id" value="{{ $petshop->id }}">
-                                    <input type="hidden" id="start" name="start">
-                                    <input type="hidden" id="end" name="end">
-
                                     
                                     <div class="form-row">
                                         <div class="form-group col">

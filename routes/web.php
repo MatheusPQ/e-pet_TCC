@@ -21,6 +21,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/petshop', 'PetshopController@store')->name('petshop.store');
 Route::get('/petshop/create', 'PetshopController@create');
 Route::get('/petshop/meusPetshops', 'PetshopController@mostrarMeusPetshops');
+Route::post('/petshop/salvarAvaliacao', 'PetshopController@salvarAvaliacao');
+Route::get('/petshop/buscarAvaliacao', 'PetshopController@buscarAvaliacao');
 Route::get('/petshop/{id}', 'PetshopController@show')->name('petshop.show');
 // Route::get('/petshop/{id}/edit', 'PetshopController@edit');
 // Route::put('/petshop/{id}', 'PetshopController@update');

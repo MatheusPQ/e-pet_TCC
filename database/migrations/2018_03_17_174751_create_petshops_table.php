@@ -21,6 +21,7 @@ class CreatePetshopsTable extends Migration
             $table->string('cpf');
             $table->string('cep');
             $table->string('endereco');
+            $table->string('numero');
             $table->string('uf');
             $table->string('cidade');
             $table->string('bairro');
@@ -30,6 +31,10 @@ class CreatePetshopsTable extends Migration
             $table->string('informacao', 500)->nullable();
             $table->time('horarioAbertura')->nullable();
             $table->time('horarioFechamento')->nullable();
+            
+            $table->float('media_avaliacoes', 2, 1)->default(3.0);
+            $table->integer('total_avaliacoes')->default(0);
+
             $table->timestamps();
         });
     }
