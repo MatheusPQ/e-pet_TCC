@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/starrr.css">
+        <link rel="stylesheet" href="/css/daterangepicker.css">
         {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.js"></script> --}}
 
@@ -110,10 +111,19 @@
     </body>
 
     <script src="/js/app.js"></script>
+
+    {{-- FULL CALENDAR --}}
     <script src="{{ asset('libs/fullcalendar/lib/moment.min.js') }}"></script>
     <script src="{{ asset('libs/fullcalendar/fullcalendar.js') }}"></script>
     <script src="{{ asset('libs/fullcalendar/locale/pt-br.js') }}"></script>
+
+    {{-- DATE RANGER --}}
+    <script src="{{ asset('js/daterangepicker.js') }}"></script>
+
+
+    {{-- STARRR (ESTRELINHAS DE AVALIAÇÃO DOS PETSHOPS) --}}
     <script src="{{ asset('js/starrr.js') }}"></script>
+
     @yield('script')
 
 </html>

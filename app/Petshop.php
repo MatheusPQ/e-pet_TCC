@@ -13,6 +13,7 @@ class Petshop extends Model
         'cnpj',
         'cep',
         'endereco',
+        'numero',
         'uf',
         'cidade',
         'bairro',

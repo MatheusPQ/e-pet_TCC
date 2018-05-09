@@ -35,6 +35,7 @@ class PetshopController extends Controller
 
     public function store(Request $req){
         $dados = $req->except('imagem');
+        // dd($dados);
 
         $petshop = Petshop::create($dados);
         $petshop_id = $petshop->id;
