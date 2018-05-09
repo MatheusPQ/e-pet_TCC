@@ -22,39 +22,42 @@
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('admin.funcionarios.store', ['id' => $petshop->id]) }}">
-                    @csrf
-                    <h5 class="card-title">Adicionar funcionário</h5>
-                    <div class="form-row">
-                        <div class="form-group col-sm-6">
-                            <label for="nome">Nome</label>
+                @csrf
+                <h5 class="card-title">Adicionar funcionário</h5>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="nome">Nome</label>
 
-                             <input id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="{{ old('nome') }}" required autofocus> 
-                            
-                            @if ($errors->has('nome'))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('nome') }}</strong>
-                                </span>
-                            @endif
+                        <input id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="{{ old('nome') }}" required autofocus> 
+                        
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="check_domingos">
+                            <label class="custom-control-label" for="check_domingos">Atende aos domingos?</label>
                         </div>
-                        <div class="form-group col-sm-6">
-                            <label for="data">Dias de atendimento</label>
-                                <input id="data" type="text" class="form-control" name="data" required>
-                        </div>
+                        @if ($errors->has('nome'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('nome') }}</strong>
+                            </span>
+                        @endif
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col">
-                            <a href="#" id="btn_salvarFuncionario" class="btn btn-success btn-block" name="btn_salvarFuncionario">Adicionar funcionário</a>
-                        </div>
-
+                    <div class="form-group col-sm-6">
+                        <label for="data">Dias de atendimento</label>
+                        <input id="data" type="text" class="form-control" name="data" required>
+                        <small class="text-muted">Horário: entre {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} e {{date( 'H:i', strtotime($petshop->horarioFechamento) )}} </small>
                     </div>
-                    {{-- <div class="form-row"> --}}
-                    {{-- </div> --}}
-
-                    <hr>
-                    <h5 class="card-title">Funcionários cadastrados</h5>
-
-                    <div class="form-row">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <a href="#" id="btn_salvarFuncionario" class="btn btn-success btn-block" name="btn_salvarFuncionario">Adicionar funcionário</a>
                     </div>
+
+                </div>
+
+                <hr>
+                <h5 class="card-title">Funcionários cadastrados</h5>
+
+                <div class="form-row">
+                </div>
                 
             </form>
         </div>

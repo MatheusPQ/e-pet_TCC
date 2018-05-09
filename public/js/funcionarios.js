@@ -1,8 +1,10 @@
-$(document).ready(function(){
-    
+$(document).ready(function(){   
+
+    var dataDeHoje = moment(new Date()).format("DD/MM/YYYY")
     var petshop_id = $('#petshop_id').val();
 
     $('input[name="data"]').daterangepicker({
+        "minDate": dataDeHoje,
         "locale": {
             "format": "DD/MM/YYYY",
             "separator": " - ",
@@ -36,8 +38,31 @@ $(document).ready(function(){
                 "Dezembro"
             ],
             "firstDay": 1
-        },
+        }
 
+    }, function(start, end, label) {
+        // console.log('start: '+ start.format('DD-MM-YYYY') + ' end: '+ end.format('DD-MM-YYYY') + ' label: ' + label);
+
+        var dados = {
+            start   : start.format('DD-MM-YYYY'),
+            end     : end.format('DD-MM-YYYY'),
+            domingos: $('#check_domingos').is(":checked") ? 1 : 0,
+            nome    : $('#nome').val()
+        }
+
+        // console.log(dados);
+        
+
+        $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+        $.ajax({
+            url: "/admin/"+petshop_id+"/funcionarios",
+            method: "POST",
+            data: dados,
+            success: function(data) {
+                console.log(data);
+                
+            }
+        });
     });
 
     // $('.input-group').on('click', 'a.btn-salvarPreco', function(event){
