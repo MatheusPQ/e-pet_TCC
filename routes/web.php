@@ -35,8 +35,10 @@ Route::get('/admin/{id}/servicos', 'PetshopServicoController@create')->name('adm
 Route::post('/admin/{id}/servicos', 'PetshopServicoController@store')->name('admin.servicos.store');
 Route::get('/admin/{id}/buscarPrecos', 'PetshopServicoRacaController@buscarPrecos');
 Route::get('/admin/{id}/funcionarios', 'FuncionarioController@create')->name('admin.funcionarios');
+Route::get('/admin/{id}/funcionarios/buscarFuncionarios', 'FuncionarioController@buscarFuncionarios');
 Route::post('/admin/{id}/funcionarios', 'FuncionarioController@store')->name('admin.funcionarios.store');
 Route::post('/admin/{id}/funcionariopetshops', 'FuncionarioPetshopController@store')->name('admin.funcionariopetshops.store');
+Route::get('/admin/{id}/buscarAgenda', 'AgendaController@buscarAgenda');
 
 Route::get('/petshopservicoraca/{id}/buscarPreco', 'PetshopServicoRacaController@buscarPreco');
 

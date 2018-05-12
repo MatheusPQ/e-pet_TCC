@@ -1,7 +1,15 @@
 $(document).ready(function(){   
 
+    //dataDeHoje.. utilizada no daterangepicker
     var dataDeHoje = moment(new Date()).format("DD/MM/YYYY")
+
+    //ID do petshop.. p/ enviar nas urls das requisições ajax
     var petshop_id = $('#petshop_id').val();
+    var funcionario_id;
+
+    //Variáveis do daterangepicker. Sempre que alterar a data no daterangepicker, o 'range' ficará salvo nessas variáveis.
+    var dataInicio;
+    var dataFim;
 
     $('input[name="data"]').daterangepicker({
         "minDate": dataDeHoje,
@@ -40,83 +48,150 @@ $(document).ready(function(){
             "firstDay": 1
         }
 
-    }, function(start, end, label) {
-        // console.log('start: '+ start.format('DD-MM-YYYY') + ' end: '+ end.format('DD-MM-YYYY') + ' label: ' + label);
+    }, function(start, end, label) { //Callback do daterangepicker.. roda sempre que alterar o 'range' 
+        dataInicio = start.format('DD-MM-YYYY');
+        dataFim = end.format('DD-MM-YYYY');
+    });
+
+    buscarFuncionarios(petshop_id);
+
+    $('#salvarFuncionario').submit(function(event){
+    // $('#btn_salvarFuncionario').click(function(event){
+        event.preventDefault();
 
         var dados = {
-            start   : start.format('DD-MM-YYYY'),
-            end     : end.format('DD-MM-YYYY'),
-            domingos: $('#check_domingos').is(":checked") ? 1 : 0,
-            nome    : $('#nome').val()
+            nome : $('#nome').val()
         }
-
-        // console.log(dados);
-        
 
         $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
         $.ajax({
             url: "/admin/"+petshop_id+"/funcionarios",
             method: "POST",
             data: dados,
-            success: function(data) {
-                console.log(data);
-                
+            success: function() {
+                buscarFuncionarios(petshop_id)
             }
         });
     });
 
-    // $('.input-group').on('click', 'a.btn-salvarPreco', function(event){
-    //     event.preventDefault();
-    //     var servico_id = $(this).data('servicoid');
-    //     var raca_id = $('#raca').val();
-    //     var preco = $('input#'+servico_id).val();
-        
-    //     var dados = {
-    //         petshop_id : petshop_id,
-    //         servico_id : servico_id,
-    //         raca_id    : raca_id,
-    //         preco      : preco
-    //     }
-    //     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-    //     $.ajax({
-    //         url: "/admin/"+petshop_id+"/animais",
-    //         method: "POST",
-    //         data: dados,
-    //         success: function() {
-    //         }
-    //     });
-        
-    // });
+    $('#btn_definirHorarios').click(function(){
 
-    // buscarPrecos(petshop_id, $('#raca').val());
+        var dados = {
+            start           : dataInicio,
+            end             : dataFim,
+            domingos        : $('#check_domingos').is(":checked") ? 1 : 0,
+            funcionario_id  : $('#select_funcionario').val()
+        }
 
-    // $('#raca').change(() =>{
-    //     buscarPrecos(petshop_id, $('#raca').val());
-    // });
+        //FAZER VALIDAÇÃO SE NULO...
+        
+        $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+        $.ajax({
+            url: "/admin/"+petshop_id+"/funcionariopetshops",
+            method: "POST",
+            data: dados,
+            success: function(data) {
+                buscarFuncionarios(petshop_id)
+            }
+        });
+    });
+
+    $('#data_agenda, #select_funcionario').change(function(){
+        buscarAgendaDoFuncionario(petshop_id);
+    });
+
 });
 
-// function buscarPrecos(petshop_id, raca_id){
+function preencherTabelaComDadosDaAgenda(dados){
+    //Esvazia a tabela.
+    $('#tabela_agenda').find('tbody tr').remove();
+    
+    //Preenche a tabela.
+    $.each(dados, function(index, valor){
+        var nomeCliente = "";
+        var raca = "";
+        var preco = "";
+        var servico = "";
 
-//     var dados = {
-//         petshop_id: petshop_id,
-//         raca_id: raca_id
-//     }
+        if(valor.user != null){            
+            var nomeCliente = valor.user.name;
+        }
 
-//     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-//     $.ajax({
-//         url: "/admin/"+petshop_id+"/buscarPrecos",
-//         data: dados,
-//         method: "GET",
-//         success: (data) => {
-//             $('.input-group input.input-preco').each( (index, element) => {
-//                 $(element).val(null);                
-//             });
+        if(valor.raca != null){            
+            var raca = valor.raca.raca;
+        }
 
-//             $(data).each( (index) => {
-//                 var preco = data[index].preco;
-//                 $('#'+data[index].servico_id).val(preco);  
-//             });
-            
-//         }
-//     });
-// }
+        if(valor.preco != null){            
+            var preco = valor.preco;
+        }
+
+        if(valor.servico != null){            
+            var servico = valor.servico;
+        }
+
+        if(valor.status == "DISPONIVEL"){
+            var span = "primary";
+        } else if (valor.status == "MARCADO"){
+            var span = "warning";
+        } else if (valor.status == "ATENDIDO"){
+            var span = "success";
+        } else if (valor.status == "CANCELADO"){
+            var span = "danger";
+        }
+
+                
+
+        $('#tabela_agenda tbody').append('<tr>' + 
+                                        '<td>'+ valor.funcionario.nome +'</td>' +
+                                        '<td>'+ valor.data +'</td>' +
+                                        '<td>'+ valor.hora +'</td>' +
+                                        '<td> <span class="badge badge-pill badge-'+span+'">'+ valor.status +'</span> </td>' +
+                                        '<td>'+ servico +'</td>' +
+                                        '<td>'+ nomeCliente +'</td>' +
+                                        '<td>'+ raca +'</td>' +
+                                        '<td>'+ preco +'</td>' +
+                                        '</tr>');
+    });
+
+}
+
+function buscarAgendaDoFuncionario(){
+    var dados = {
+        funcionario_id  : $('#select_funcionario').val(),
+        data            : $('#data_agenda').val()
+    }
+
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+    $.ajax({
+        url: "/admin/"+petshop_id+"/buscarAgenda",
+        method: "GET",
+        data: dados,
+        success: function(data) {
+            console.log(data);
+            preencherTabelaComDadosDaAgenda(data);
+        }
+    });
+}
+
+function buscarFuncionarios(petshop_id){    
+
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+    $.ajax({
+        url: "/admin/"+petshop_id+"/funcionarios/buscarFuncionarios",
+        method: "GET",
+        success: function(dadosRetornados) {
+            inserirFuncionariosNoSelect(dadosRetornados);
+            funcionario_id = $('#select_funcionario').val();            
+        }
+    });
+}
+
+function inserirFuncionariosNoSelect(dados){
+    //Esvazia o select.
+    $('#select_funcionario').find('option').remove();
+    
+    //Preenche o select.
+    $.each(dados, function(index, valor){
+        $('#select_funcionario').append('<option value="'+ valor.funcionario_id +'">'+valor.funcionario.nome+'</option>')
+    });
+}
