@@ -14,4 +14,8 @@ class FuncionarioPetshop extends Model
     public function funcionario(){
         return $this->belongsTo('App\Funcionario');
     }
+
+    public function petshop(){
+        return $this->belongsTo('App\Petshop');
+    }
 }

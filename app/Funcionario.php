@@ -9,4 +9,8 @@ class Funcionario extends Model
     protected $fillable = [
         'nome'
     ];
+
+    public function funcionariopetshop(){
+        return $this->hasOne('App\FuncionarioPetshop');
+    }
 }

@@ -1,56 +1,9 @@
 $(document).ready(function(){
-    $('#calendar').fullCalendar({
-		eventSources: [
-
-			// your event source
-			{
-			  url: '/evento', // use the `url` property
-			  data: {
-				  petshop_id: $('#petshop_id').val()
-			  }
-			//   color: 'yellow',    // an option!
-			//   textColor: 'black'  // an option!
-			}
-		
-			// any other sources...
-		
-		],
-		themeSystem: 'bootstrap4',
-		// bootstrapFontAwesome: false,
-        defaultView: 'listDay',
-		noEventsMessage: 'Nada marcado para este dia',
-		// header: {
-		// 	left:   'title',
-		// 	center: '',
-		// 	right:  'basicWeek,listDay today prev,next'
-		// },
-        // events: [
-        //   	{
-		// 		title  : 'BANHO | YORKSHIRE | R$ 15,00',
-		// 		start  : '2018-04-26T15:30:00',
-		// 		allDay : false,
-		// 		backgroundColor: 'red'
-        //   	},
-        //   	{
-		// 		title  : 'BANHO | PINSCHER | R$ 15,00',
-		// 		start  : '2018-04-26T12:30:00',
-		// 		allDay : false 
-        //   	},
-        //   	{
-		// 		title  : 'TOSA | PITBULL | R$ 15,00',
-		// 		start  : '2018-04-26T12:00:00',
-		// 		allDay : false 
-        //   	}
-		// ]
-		
-	});
-	// carregarCalendar();
+	bloquearBotaoDeMarcarHorario('Selecione uma data!');
+	var petshop_id = $('#petshop_id').val();
 	$('.starrr').starrr();
-	
 
 	$('.starrr').on('starrr:change', function(e, value){
-		// var ratingsField = $('#ratings-hidden');
-		// input_avaliacao.val(value);
 		
 		dados = {
 			petshop_id: $('#petshop_id').val(),
@@ -71,101 +24,39 @@ $(document).ready(function(){
 		
 	});
 
-	// $('.starrr').starrr({
-	// 	change: function(e, value){
-	// 		// var ratingsField = $('#ratings-hidden');
-	// 		// input_avaliacao.val(value);
-			
-	// 		dados = {
-	// 			petshop_id: $('#petshop_id').val(),
-	// 			avaliacao: value
-	// 		}
-	// 		$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-	// 		$.ajax({
-	// 			url: '/petshop/salvarAvaliacao',
-	// 			method: "POST",
-	// 			data: dados,
-	// 			success: function(){
-	// 				console.log("td certo");
-					
-	// 			},
-	// 			error: function(){
-	// 				console.log("deu merda");
-					
-	// 			}
-	// 		});
-	// 	}
-		
-	// });
+    $('#data').change(function(){
+		bloquearBotaoDeMarcarHorario('Selecione uma data e horário!');
+		buscarHorariosDisponiveis(petshop_id);
+    });
 
-	// ERRO AO INCREMENTAR 30 MINUTOS NO HORÁRIO... TALVEZ REMOVER O FULLCALENDAR E USAR UMA TABELA NORMAL PARA MOSTRAR EVENTOS? (tipo site gndi)
 	$('#btn-marcarHorario').click(function(event){
-		// var dataHoje = $('#calendar').fullCalendar('getDate');
-		// console.log(dataHoje.format("DD-MM-YYYY"));
-		
-		var horaSelecionada = $('#hora').attr('min');
-		var dataSelecionada = $('#data').val();
-		var start = $.fullCalendar.moment(dataSelecionada+'T'+horaSelecionada);
+		var dados = {
+			data            : $('#data').val(),
+			hora			: $('#tabela_horarios input[name="radio"]:checked').data('hora'),
+			funcionario_id	: $('#tabela_horarios input[name="radio"]:checked').data('funcionario'),
+			user_id			: $('#user_id').val(),
+			petshop_id		: petshop_id,
+			raca_id			: $('#raca').val(),
+			servico_id		: $('label.btn.active').find("input").val()
+		}
 
-		$('#start').val(dataSelecionada+' '+horaSelecionada);
-		var horaIncrementada = $.fullCalendar.moment(horaSelecionada).add(30, 'minutes');
-		var dataFinal = $.fullCalendar.moment(dataInicial).add(60, 'minutes');
-		$('#end').val(dataSelecionada+' '+horaIncrementada);
-		console.log($('#start').val(), $('#end').val());
+		console.log(dados);
 		
-
+		
+		$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+		$.ajax({
+			url: "/petshop/"+petshop_id+"/marcarHorario",
+			method: "POST",
+			data: dados,
+			success: function(data) {
+				// $('#tabela_horarios').html(data);
+				// console.log(data);
+				// preencherTabelaComHorariosDisponiveis(data);
+			}, error: function(){
+				alert('Houve algum erro ao marcar o horário. Tente novamente!');
+			}
+		});
 		event.preventDefault();
-	});
-
-	$('#btn-teste').click(function(){
-		// var moment = $('#calendar').fullCalendar('getDate');
-		// var momentFormatado = moment.format("DD-MM-YYYY");
-		
-
-		// var eventosHoje = buscarEventosDeHoje(momentFormatado);
-		// // console.log(eventosHoje[0].start.format('HH:mm:ss'));
-		// var horarioFechamento = $('#start').attr('max');
-		// var horarioAbertura = $('#start').attr('min');
-		// // console.log(horarioAbertura);
-		
-		
-		// // var horarioFechamentoFormatado = new Date("November 13, 2013 " + start_time);
-		// // stt = stt.getTime();
-		// // console.log(horarioFechamentoFormatado);
-		// var data = new Date();
-		// // console.log(data.toLocaleTimeString());
-		
-
-		// // if(eventosHoje[0].start.format('HH:mm:ss') == "17:00:00"){
-		// // 	console.log('É IGUAL');
-			
-		// // } else {
-		// // 	var event={id:1 , title: 'New event', start:  new Date()};
-
-		// // 	$('#calendar').fullCalendar( 'renderEvent', event, true);
-			
-		// // 	console.log('É DIFERENTE');
-		// // }
-
-		// var dataInicial = $.fullCalendar.moment();
-		// var dataFinal = $.fullCalendar.moment(dataInicial).add(60, 'minutes');
-		// // var local = $.fullCalendar.moment(moment +'T08:00:00');
-		// // var local = $.fullCalendar.moment('2014-05-01T12:00:00');
-		// // console.log(local);
-		// console.log(moment);
-		
-
-		// var calendario = $('#calendar'); 
-		// calendario.fullCalendar();
-
-		
-		// var eventoTeste = {
-		// title:"my new event",
-		// allDay: false,
-		// start: dataInicial,
-		// end: dataFinal
-		// };
-		// calendario.fullCalendar( 'renderEvent', eventoTeste );
 	});
 	
 	$('section.petshop-servicos-selecionar label.btn:first').addClass('active');
@@ -181,10 +72,84 @@ $(document).ready(function(){
 		buscarPreco(servico_id);
 	});
 
+	// $('table#tabela_marcarHorario').on('change', 'input[name="radio"]', function(){
+	$('#tabela_horarios').on('change', 'input[name="radio"]', function(){
+		if($('h4.preco span').text() == "Não definido"){
+			bloquearBotaoDeMarcarHorario('Este serviço não é oferecido para a raça escolhida!');
+		} else {
+			desbloquearBotaoDeMarcarHorario();
+		}
+	});
+	
+    $('body').on('click', '.pagination a', function(e) {
+		e.preventDefault();
+		bloquearBotaoDeMarcarHorario('Selecione uma data e horário!');
+		
+        // $('#load a').css('color', '#dfecf6');
+        // $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
+
+        var url = $(this).attr('href');  
+        buscarHorariosDeOutraPagina(url, petshop_id);
+        window.history.pushState("", "", url);
+    });
+
 	buscarPreco( $('label.btn.active').find("input").val() ); //id do serviço como argumento.
 	buscarAvaliacao();
 	
 });
+
+function buscarHorariosDeOutraPagina(url, petshop_id) {
+    var dados = {
+		data            : $('#data').val(),
+		petshop_id		: petshop_id
+    }
+
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+	$.ajax({
+		url : url,
+		data: dados,
+		method: "GET"
+	}).done(function (data) {
+		$('#tabela_horarios').html(data);  
+	}).fail(function () {
+		alert('Não foi possível carregar os horários.');
+	});
+}
+
+function buscarHorariosDisponiveis(petshop_id){
+    var dados = {
+		data            : $('#data').val(),
+		petshop_id		: petshop_id
+    }
+
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+    $.ajax({
+        url: "/petshop/"+petshop_id+"/buscarHorarios",
+        method: "GET",
+        data: dados,
+        success: function(data) {
+            $('#tabela_horarios').html(data);
+            // console.log(data);
+            // preencherTabelaComHorariosDisponiveis(data);
+        }, error: function(){
+			alert('Não foi possível carregar os horários.');
+		}
+    });
+}
+
+function preencherTabelaComHorariosDisponiveis(dados){
+    //Esvazia a tabela.
+    $('#tabela_marcarHorario').find('tbody tr').remove();
+    
+    //Preenche a tabela.
+    $.each(dados, function(index, valor){               
+
+        $('#tabela_marcarHorario tbody').append('<tr>' + 
+										'<td>'+ valor.data + ' - '+ valor.hora +'</td>' +
+                                        '<td>'+ valor.funcionario.nome +'</td>' +
+                                        '</tr>');
+    });
+}
 
 function buscarAvaliacao(){
 	
@@ -203,43 +168,6 @@ function buscarAvaliacao(){
 		}
 	});
 }
-
-function buscarEventosDeHoje(hoje){
-	var eventosHoje = $('#calendar').fullCalendar('clientEvents', function(evt){
-		return evt.start.format("DD-MM-YYYY") == hoje;
-	
-	});
-
-	return eventosHoje;
-}
-
-// function carregarCalendar(){
-// 	var eventos = [];
-// 	$.ajax({
-// 		url: '/evento',
-// 		type: 'GET',
-// 		data: {
-// 			petshop_id: $('#petshop_id').val()
-// 		},
-// 		success: function(data) {
-// 			console.log(data);
-			
-// 			$('#calendar').fullCalendar('removeEvents');
-// 			$(data).each(function(index, value) {
-// 				eventos[index] = {
-// 					id: value.id,
-// 					title: value.title,
-// 					start: value.start,
-// 					end: value.end
-// 				}
-// 			});
-// 		}
-// 	});
-// 	// console.log(eventos);
-	
-// 	$('#calendar').fullCalendar('addEventSource', eventos);
-// 	$('#calendar').fullCalendar('rerenderEvents');
-// }
 
 function buscarPreco(servico_id){
 
@@ -261,28 +189,44 @@ function buscarPreco(servico_id){
 		data: dados,
 		success: function(data) {
 
-			//verifica se preço é null
+			//verifica se preço é null ou 0
 			if(data.preco && data.preco != 0){
 				$("h4.preco span").text("R$ "+ data.preco);
 				$("h4.preco span").removeClass('indisponivel');
 				$("h4.preco span").addClass('preco');
 
-				//Desbloqueia o botão
-				$("#btn-marcarHorario").attr('disabled', false);
-				$("#btn-marcarHorario").text('Marcar horário');
-				$("#btn-marcarHorario").removeClass('btn-danger');
-				$("#btn-marcarHorario").addClass('btn-primary');
+				//Condição para desbloquear o botão de 'Marcar Horário'.
+				verificarSeHorarioFoiSelecionado();
 			} else {
 				$("h4.preco span").text("Não definido");
 				$("h4.preco span").removeClass('preco');
 				$("h4.preco span").addClass('indisponivel');
 
 				//Bloqueia o botão
-				$("#btn-marcarHorario").attr('disabled', true);
-				$("#btn-marcarHorario").text('Este serviço não é oferecido para a raça escolhida!');
-				$("#btn-marcarHorario").removeClass('btn-primary');
-				$("#btn-marcarHorario").addClass('btn-danger');
+				bloquearBotaoDeMarcarHorario('Este serviço não é oferecido para a raça escolhida!');
 			}			
 		}
 	});
+}
+
+function verificarSeHorarioFoiSelecionado(){
+	if($('table#tabela_marcarHorario input[name="radio"]').is(':checked')){
+		desbloquearBotaoDeMarcarHorario();
+	} else {
+		bloquearBotaoDeMarcarHorario('Selecione uma data e horário!');
+	}
+}
+
+function desbloquearBotaoDeMarcarHorario(){
+	$("#btn-marcarHorario").attr('disabled', false);
+	$("#btn-marcarHorario").text('Marcar horário');
+	$("#btn-marcarHorario").removeClass('btn-danger');
+	$("#btn-marcarHorario").addClass('btn-primary');
+}
+
+function bloquearBotaoDeMarcarHorario(mensagem){
+	$("#btn-marcarHorario").attr('disabled', true);
+	$("#btn-marcarHorario").text(mensagem);
+	$("#btn-marcarHorario").removeClass('btn-primary');
+	$("#btn-marcarHorario").addClass('btn-danger');
 }

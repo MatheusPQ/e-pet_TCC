@@ -7,8 +7,9 @@
 
 <input type="hidden" id="petshop_id" name="petshop_id" value="{{ $petshop->id }}">
 <input type="hidden" id="user_id" name="user_id" value="{{ Auth::id() }}">
-<input type="hidden" id="start" name="start">
-<input type="hidden" id="end" name="end">
+<input type="hidden" id="preco_servico" name="user_id" value="{{ Auth::id() }}">
+{{-- <input type="hidden" id="start" name="start">
+<input type="hidden" id="end" name="end"> --}}
 
 <div class="container">
     <section class="petshop-servicos-topo">
@@ -123,9 +124,10 @@
                 </div> --}}
                 <div class="col">
                     <div class="card">
-                        <h5 class="card-header"> <b>Marcar horário</b> </h5>
+                        <h5 class="card-header"> <b>Marcar horário</b> <small class="text-muted">(aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}}) </small></h5>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('evento.store') }}">
+                            <form method="POST" action="#">
+                                @csrf
                                 <h5 class="card-title">Selecione o serviço</h5>
 
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -137,47 +139,51 @@
                                 </div>
 
                                 <hr>
-                            {{-- <div id="racas_horarios"> --}}
-                                <h5 class="card-title">Selecione a raça e o horário</h5>
-                                    @csrf
-                                    
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="raca">Raça</label>
-                                            <select name="raca" id="raca" class="form-control">
-                                                @foreach($racas as $raca)
-                                                    <option value="{{ $raca->raca_id }}"> {{ $raca->raca->raca }} </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="start">Horário (aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}})</label>
-                                            <input type="time" min="{{ $petshop->horarioAbertura }}" max="{{ $petshop->horarioFechamento }}" name="hora" id="hora" class="form-control" required>
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="date">Data</label>
-                                            <input type="date" name="data" id="data" class="form-control" required>
-                                        </div>
+
+                                <h5 class="card-title">Selecione a raça e o horário</h5>                                
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="raca">Raça</label>
+                                        <select name="raca" id="raca" class="form-control">
+                                            @foreach($racas as $raca)
+                                                <option value="{{ $raca->raca_id }}"> {{ $raca->raca->raca }} </option>
+                                            @endforeach
+                                        </select>
                                     </div>
-    
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <h4 class="mb-0 preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h4>
-                                        </div>
+                                    {{-- <div class="form-group col-md-3">
+                                        <label for="start">Horário (aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}})</label>
+                                        <input type="time" min="{{ $petshop->horarioAbertura }}" max="{{ $petshop->horarioFechamento }}" name="hora" id="hora" class="form-control" required>
+                                    </div> --}}
+                                    <div class="form-group col-md-3">
+                                        <label for="date">Data</label>
+                                        <input type="date" name="data" id="data" class="form-control" required>
                                     </div>
-                                    
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <button type="submit" id="btn-marcarHorario" class="btn btn-primary btn-block">Marcar horário</button>
-                                        </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col">
+                                        <h4 class="mb-0 preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h4>
                                     </div>
+                                </div>
                                 
+                                <div class="form-row">
+                                    <div class="form-group col">
+                                        <button type="submit" id="btn-marcarHorario" class="btn btn-primary btn-block">Marcar horário</button>
+                                    </div>
+                                </div>                                
                             </form>
 
-                            {{-- </div> --}}
-                            <button type="button" id="btn-teste" class="btn btn-primary btn-block mb-2">TESTE</button>
-
-                            <div id="calendar"></div>
+                            <div id="tabela_horarios"></div>
+                            {{-- <table class="table table-sm table-hover" id="tabela_marcarHorario">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Data/Horário</th>
+                                        <th scope="col">Funcionário</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table> --}}
                         </div>
                     </div>
                 </div>

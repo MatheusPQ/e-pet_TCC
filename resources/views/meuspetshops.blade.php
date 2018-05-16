@@ -39,9 +39,9 @@
 
 </div>
 
-@section('script')
+{{-- @section('script')
     <script src="/js/index.js"></script>
-@endsection
+@endsection --}}
 
 
 @stop

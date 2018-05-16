@@ -24,6 +24,8 @@ Route::get('/petshop/meusPetshops', 'PetshopController@mostrarMeusPetshops');
 Route::post('/petshop/salvarAvaliacao', 'PetshopController@salvarAvaliacao');
 Route::get('/petshop/buscarAvaliacao', 'PetshopController@buscarAvaliacao');
 Route::get('/petshop/{id}', 'PetshopController@show')->name('petshop.show');
+Route::get('/petshop/{id}/buscarHorarios', 'AgendaController@buscarHorarios'); //Mostra os horários disponíveis p/ agendamento, de acordo com a data selecionada (tela do petshop)
+Route::post('/petshop/{id}/marcarHorario', 'AgendaController@marcarHorario');
 // Route::get('/petshop/{id}/edit', 'PetshopController@edit');
 // Route::put('/petshop/{id}', 'PetshopController@update');
 // Route::delete('/petshop/{id}', 'PetshopController@destroy');
@@ -66,5 +68,8 @@ Route::get('/petshopServico/{id}/create', 'PetshopServicoController@create')->na
 // Route::post('/servico/save', 'ServicosController@save')->name('servico.save');
 
 
-Route::get('/evento', 'EventoController@list');
-Route::post('/evento', 'EventoController@store')->name('evento.store');
+// Route::get('/evento', 'EventoController@list');
+// Route::post('/evento', 'EventoController@store')->name('evento.store');
+
+Route::get('/agenda', 'AgendaController@index');
+Route::post('/agenda/desmarcarHorario', 'AgendaController@desmarcarHorario');

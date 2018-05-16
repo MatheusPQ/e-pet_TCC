@@ -155,7 +155,7 @@ function preencherTabelaComDadosDaAgenda(dados){
 
 }
 
-function buscarAgendaDoFuncionario(){
+function buscarAgendaDoFuncionario(petshop_id){
     var dados = {
         funcionario_id  : $('#select_funcionario').val(),
         data            : $('#data_agenda').val()
@@ -167,7 +167,6 @@ function buscarAgendaDoFuncionario(){
         method: "GET",
         data: dados,
         success: function(data) {
-            console.log(data);
             preencherTabelaComDadosDaAgenda(data);
         }
     });
