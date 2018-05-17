@@ -113,81 +113,61 @@
 
     <section class="petshop-servicos-selecionar">
         <div class="row">
-                {{-- <div class="col-md-4">
-                    @foreach($petshop->petshopservicos as $petshopservico)
-                        <a class="card btn btn-light">
-                            <div class="card-body">
-                                <h4 class="mb-0"> {{$petshopservico->servico->servico}} </h4>
+            <div class="col">
+                <div class="card">
+                    <h5 class="card-header"> <b>Marcar horário</b> <small class="text-muted">(aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}}) </small></h5>
+                    <div class="card-body">
+                        <form method="POST" action="#">
+                            @csrf
+                            <h5 class="card-title">Selecione o serviço</h5>
+
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                @foreach($petshop->petshopservicos as $petshopservico)
+                                    <label class="btn btn-outline-primary">
+                                        <input type="radio" name="servicos" id="{{$petshopservico->servico_id}}" autocomplete="off" value="{{$petshopservico->servico_id}}"> {{$petshopservico->servico->servico}}
+                                    </label>
+                                @endforeach
                             </div>
-                        </a>
-                    @endforeach
-                </div> --}}
-                <div class="col">
-                    <div class="card">
-                        <h5 class="card-header"> <b>Marcar horário</b> <small class="text-muted">(aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}}) </small></h5>
-                        <div class="card-body">
-                            <form method="POST" action="#">
-                                @csrf
-                                <h5 class="card-title">Selecione o serviço</h5>
 
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    @foreach($petshop->petshopservicos as $petshopservico)
-                                        <label class="btn btn-outline-primary">
-                                            <input type="radio" name="servicos" id="{{$petshopservico->servico_id}}" autocomplete="off" value="{{$petshopservico->servico_id}}"> {{$petshopservico->servico->servico}}
-                                        </label>
-                                    @endforeach
+                            <hr>
+
+                            <h5 class="card-title">Selecione a raça e o horário</h5>                                
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="raca">Raça</label>
+                                    <select name="raca" id="raca" class="form-control">
+                                        @foreach($racas as $raca)
+                                            <option value="{{ $raca->raca_id }}"> {{ $raca->raca->raca }} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
-
-                                <hr>
-
-                                <h5 class="card-title">Selecione a raça e o horário</h5>                                
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="raca">Raça</label>
-                                        <select name="raca" id="raca" class="form-control">
-                                            @foreach($racas as $raca)
-                                                <option value="{{ $raca->raca_id }}"> {{ $raca->raca->raca }} </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    {{-- <div class="form-group col-md-3">
-                                        <label for="start">Horário (aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}})</label>
-                                        <input type="time" min="{{ $petshop->horarioAbertura }}" max="{{ $petshop->horarioFechamento }}" name="hora" id="hora" class="form-control" required>
-                                    </div> --}}
-                                    <div class="form-group col-md-3">
-                                        <label for="date">Data</label>
-                                        <input type="date" name="data" id="data" class="form-control" required>
-                                    </div>
+                                {{-- <div class="form-group col-md-3">
+                                    <label for="start">Horário (aberto das {{date( 'H:i', strtotime($petshop->horarioAbertura) )}} às {{date( 'H:i', strtotime($petshop->horarioFechamento) )}})</label>
+                                    <input type="time" min="{{ $petshop->horarioAbertura }}" max="{{ $petshop->horarioFechamento }}" name="hora" id="hora" class="form-control" required>
+                                </div> --}}
+                                <div class="form-group col-md-3">
+                                    <label for="date">Data</label>
+                                    <input type="date" name="data" id="data" class="form-control" required>
                                 </div>
+                            </div>
 
-                                <div class="form-row">
-                                    <div class="form-group col">
-                                        <h4 class="mb-0 preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h4>
-                                    </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <h4 class="mb-0 preco"><strong>Preço: <span class="preco">R$ 0,00</span></strong></h4>
                                 </div>
-                                
-                                <div class="form-row">
-                                    <div class="form-group col">
-                                        <button type="submit" id="btn-marcarHorario" class="btn btn-primary btn-block">Marcar horário</button>
-                                    </div>
-                                </div>                                
-                            </form>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <button type="submit" id="btn-marcarHorario" class="btn btn-primary btn-block">Marcar horário</button>
+                                </div>
+                            </div>                                
+                        </form>
 
-                            <div id="tabela_horarios"></div>
-                            {{-- <table class="table table-sm table-hover" id="tabela_marcarHorario">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Data/Horário</th>
-                                        <th scope="col">Funcionário</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table> --}}
-                        </div>
+                        <div id="tabela_horarios"></div>
                     </div>
                 </div>
-
+            </div>
         </div>
 
     </section>

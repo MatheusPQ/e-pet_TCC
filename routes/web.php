@@ -26,6 +26,7 @@ Route::get('/petshop/buscarAvaliacao', 'PetshopController@buscarAvaliacao');
 Route::get('/petshop/{id}', 'PetshopController@show')->name('petshop.show');
 Route::get('/petshop/{id}/buscarHorarios', 'AgendaController@buscarHorarios'); //Mostra os horários disponíveis p/ agendamento, de acordo com a data selecionada (tela do petshop)
 Route::post('/petshop/{id}/marcarHorario', 'AgendaController@marcarHorario');
+Route::get('/petshop/{id}/buscarHorariosMarcados', 'AgendaController@buscarHorariosMarcados');
 // Route::get('/petshop/{id}/edit', 'PetshopController@edit');
 // Route::put('/petshop/{id}', 'PetshopController@update');
 // Route::delete('/petshop/{id}', 'PetshopController@destroy');
@@ -41,6 +42,7 @@ Route::get('/admin/{id}/funcionarios/buscarFuncionarios', 'FuncionarioController
 Route::post('/admin/{id}/funcionarios', 'FuncionarioController@store')->name('admin.funcionarios.store');
 Route::post('/admin/{id}/funcionariopetshops', 'FuncionarioPetshopController@store')->name('admin.funcionariopetshops.store');
 Route::get('/admin/{id}/buscarAgenda', 'AgendaController@buscarAgenda');
+Route::post('/admin/{id}/alterarStatusHorario', 'AgendaController@alterarStatusHorario');
 
 Route::get('/petshopservicoraca/{id}/buscarPreco', 'PetshopServicoRacaController@buscarPreco');
 

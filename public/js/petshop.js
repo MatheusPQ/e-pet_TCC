@@ -3,12 +3,12 @@ $(document).ready(function(){
 	var petshop_id = $('#petshop_id').val();
 	$('.starrr').starrr();
 
-	$('.starrr').on('starrr:change', function(e, value){
-		
+	$('.starrr').on('starrr:change', function(e, value){		
 		dados = {
 			petshop_id: $('#petshop_id').val(),
 			avaliacao: value
 		}
+
 		$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 		$.ajax({
 			url: '/petshop/salvarAvaliacao',
@@ -20,8 +20,7 @@ $(document).ready(function(){
 			},
 			error: function(){				
 			}
-		});
-		
+		});		
 	});
 
     $('#data').change(function(){
@@ -38,10 +37,7 @@ $(document).ready(function(){
 			petshop_id		: petshop_id,
 			raca_id			: $('#raca').val(),
 			servico_id		: $('label.btn.active').find("input").val()
-		}
-
-		console.log(dados);
-		
+		}		
 		
 		$.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 		$.ajax({
@@ -50,7 +46,6 @@ $(document).ready(function(){
 			data: dados,
 			success: function(data) {
 				// $('#tabela_horarios').html(data);
-				// console.log(data);
 				// preencherTabelaComHorariosDisponiveis(data);
 			}, error: function(){
 				alert('Houve algum erro ao marcar o horário. Tente novamente!');
@@ -90,7 +85,6 @@ $(document).ready(function(){
 
         var url = $(this).attr('href');  
         buscarHorariosDeOutraPagina(url, petshop_id);
-        window.history.pushState("", "", url);
     });
 
 	buscarPreco( $('label.btn.active').find("input").val() ); //id do serviço como argumento.
@@ -129,7 +123,6 @@ function buscarHorariosDisponiveis(petshop_id){
         data: dados,
         success: function(data) {
             $('#tabela_horarios').html(data);
-            // console.log(data);
             // preencherTabelaComHorariosDisponiveis(data);
         }, error: function(){
 			alert('Não foi possível carregar os horários.');
@@ -137,19 +130,19 @@ function buscarHorariosDisponiveis(petshop_id){
     });
 }
 
-function preencherTabelaComHorariosDisponiveis(dados){
-    //Esvazia a tabela.
-    $('#tabela_marcarHorario').find('tbody tr').remove();
+// ==== FUNÇÃO DESATUALIZADA - REMOVER ====
+// function preencherTabelaComHorariosDisponiveis(dados){
+//     //Esvazia a tabela.
+//     $('#tabela_marcarHorario').find('tbody tr').remove();
     
-    //Preenche a tabela.
-    $.each(dados, function(index, valor){               
-
-        $('#tabela_marcarHorario tbody').append('<tr>' + 
-										'<td>'+ valor.data + ' - '+ valor.hora +'</td>' +
-                                        '<td>'+ valor.funcionario.nome +'</td>' +
-                                        '</tr>');
-    });
-}
+//     //Preenche a tabela.
+//     $.each(dados, function(index, valor){               
+//         $('#tabela_marcarHorario tbody').append('<tr>' + 
+// 			'<td>'+ valor.data + ' - '+ valor.hora +'</td>' +
+// 			'<td>'+ valor.funcionario.nome +'</td>' +
+// 			'</tr>');
+//     });
+// }
 
 function buscarAvaliacao(){
 	
@@ -202,13 +195,13 @@ function buscarPreco(servico_id){
 				$("h4.preco span").removeClass('preco');
 				$("h4.preco span").addClass('indisponivel');
 
-				//Bloqueia o botão
 				bloquearBotaoDeMarcarHorario('Este serviço não é oferecido para a raça escolhida!');
 			}			
 		}
 	});
 }
 
+//Verifica se algum horário foi selecionado na tabela (botões radio na tabela)
 function verificarSeHorarioFoiSelecionado(){
 	if($('table#tabela_marcarHorario input[name="radio"]').is(':checked')){
 		desbloquearBotaoDeMarcarHorario();
@@ -217,6 +210,7 @@ function verificarSeHorarioFoiSelecionado(){
 	}
 }
 
+//Desbloqueia o botão de marcar horário, permitindo que o usuário... marque o horário!
 function desbloquearBotaoDeMarcarHorario(){
 	$("#btn-marcarHorario").attr('disabled', false);
 	$("#btn-marcarHorario").text('Marcar horário');
@@ -224,6 +218,8 @@ function desbloquearBotaoDeMarcarHorario(){
 	$("#btn-marcarHorario").addClass('btn-primary');
 }
 
+//Bloqueia o botão de marcar horário, impedindo o usuário de marcar um horário com o petshop.
+//Pode ser porque ele selecionou um serviço inválido, ou porque ele não selecionou uma data ou horário.
 function bloquearBotaoDeMarcarHorario(mensagem){
 	$("#btn-marcarHorario").attr('disabled', true);
 	$("#btn-marcarHorario").text(mensagem);

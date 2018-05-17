@@ -1,6 +1,8 @@
 @extends('principal')
 @section('conteudo')
 
+<input type="hidden" id="petshop_id" value="{{$petshop->id}}">
+
 <div class="container">
     <nav id="navbar-admin" class="navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Área administrativa</a>
@@ -17,29 +19,43 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9" style="background: red;">
-            <p>Gráficos aqui?</p>
-        </div>
-        <div class="col-md-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Agenda</h4>
+                    <hr>
 
+                    <div class="row">
+                        <div class="form-group col-sm-6 col-md-4">
+                            <label for="select_funcionario">Selecione o funcionário</label>
+                            <select name="select_funcionario" id="select_funcionario" class="form-control"></select>
+                        </div>
+
+                        <div class="form-group col-sm-6 col-md-4">
+                            <label for="data_agenda">Data</label>
+                            <input type="date" class="form-control" name="data_agenda" id="data_agenda">
+                        </div>
+                    </div>
+
+                    <div id="tabela_horarios_marcados" class="table-responsive"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Configurações</h4>
-                    <h6 class="card-subtitle mb-2 text-muted"></h6>
-                    <h6 class="card-subtitle mb-2 text-muted"></h6>
-                    {{-- <p class="card-text"><b>Serviços oferecidos: </b></p> --}}
                     <hr>
                     <a href="#" class="btn btn-danger btn-block">Apagar petshop</a>
                     {{-- <a href="{{route('petshop.show', ['id' => $petshop->petshop->id]) }}" class="btn btn-success btn-block">Página do petshop</a> --}}
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
-
-{{--  @section('script')
-    <script src="/js/fileinput2.js"></script>
-@endsection  --}}
+ @section('script')
+    <script src="/js/petshopAdmin.js"></script>
+@endsection 
 
 @stop

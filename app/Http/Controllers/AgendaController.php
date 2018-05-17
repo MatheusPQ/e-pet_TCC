@@ -93,4 +93,41 @@ class AgendaController extends Controller
         $agenda->preco = null;
         $agenda->save();
     }
+
+    public function buscarHorariosMarcados($petshop_id, Request $req){
+        $petshop_id = $req->input('petshop_id');
+
+        $where = [
+            'data'              => $req->input('data'),
+            // 'status'            => "MARCADO",
+            'funcionario_id'    => $req->input('funcionario_id')
+        ];
+
+        $horarios = Agenda::where($where)
+                        ->where('status', '<>', "DISPONIVEL")
+                        ->with('funcionario')
+                        ->orderBy('hora')
+                        ->paginate(10);
+        return view('horariosMarcados', ['horarios' => $horarios])->render();
+    }
+
+    public function alterarStatusHorario($petshop_id, Request $req){
+        // dd($req->all());
+
+        $where = [
+            'funcionario_id'    => $req->input('funcionario'),
+            'data'              => $req->input('dia'),
+            'hora'              => $req->input('hora')
+        ];
+
+        $agenda = Agenda::where($where)->first();
+        $agenda->status = $req->input('status');
+        if($req->input('status') == "DISPONIVEL"){
+            $agenda->servico = null;
+            $agenda->user_id = null;
+            $agenda->raca_id = null;
+            $agenda->preco = null;
+        }
+        $agenda->save();
+    }
 }

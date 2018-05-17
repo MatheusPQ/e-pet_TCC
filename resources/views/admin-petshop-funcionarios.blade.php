@@ -87,7 +87,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="select_funcionario">Data</label>
+                    <label for="data_agenda">Data</label>
                     <input type="date" class="form-control" name="data_agenda" id="data_agenda">
                 </div>
             </div>
