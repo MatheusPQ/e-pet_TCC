@@ -24,7 +24,7 @@
     </head>
     <body>
         {{--  <div id="app">  --}}
-            <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-md navbar-dark {{Auth::check() ? ( Auth::user()->nivel == 1 ? 'bg-dark' : 'bg-primary') : 'bg-primary'}}">
                 <!-- Navbar content -->
                 <a class="navbar-brand" href="/">E-Pet</a>
                 <button class="navbar-toggler" 
@@ -62,6 +62,11 @@
                                     <div class="dropdown-divider"></div>
     
                                 @endif
+
+                                @if(Auth::user()->nivel == 1)
+                                    <a class="dropdown-item" href="/estatisticas">Estatísticas</a>
+                                @endif
+
                                 <a class="dropdown-item" href="/agenda">Horários marcados</a>  
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -121,6 +126,8 @@
     {{-- DATE RANGER --}}
     <script src="{{ asset('js/daterangepicker.js') }}"></script>
 
+    {{-- CHARTJS --}}
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
 
     {{-- STARRR (ESTRELINHAS DE AVALIAÇÃO DOS PETSHOPS) --}}
     <script src="{{ asset('js/starrr.js') }}"></script>

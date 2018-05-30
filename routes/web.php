@@ -15,7 +15,13 @@
 
 Auth::routes();
 
+Route::get('/estatisticas', 'HomeController@mostrarEstatisticas');
+
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/buscarPetshopPorNome', 'HomeController@buscarPetshopPorNome');
+Route::get('/buscarPetshopPorAvaliacao', 'HomeController@buscarPetshopPorAvaliacao');
+Route::get('/buscarPetshopPorServico', 'HomeController@buscarPetshopPorServico');
+Route::get('/buscarPetshopPorCidade', 'HomeController@buscarPetshopPorCidade');
 
 // Route::get('/', 'PetshopController@index');
 Route::post('/petshop', 'PetshopController@store')->name('petshop.store');

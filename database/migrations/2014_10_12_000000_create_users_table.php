@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
+            $table->string('cidade');
+            $table->string('estado');
             $table->enum('nivel', array_keys(\App\User::NIVEL));
             $table->rememberToken();
             $table->timestamps();

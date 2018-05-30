@@ -193,7 +193,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-6 col-md-3">
                                         <label for="horarioAbertura">Abertura</label>
-                                        <input id="horarioAbertura" type="time" class="form-control{{ $errors->has('horarioAbertura') ? ' is-invalid' : '' }}" name="horarioAbertura">
+                                        <input id="horarioAbertura" type="time" class="form-control{{ $errors->has('horarioAbertura') ? ' is-invalid' : '' }}" name="horarioAbertura" required>
         
                                         @if ($errors->has('horarioAbertura'))
                                             <span class="invalid-feedback">
@@ -205,7 +205,7 @@
                                     <div class="form-group col-6 col-md-3">
                                         <label for="horarioFechamento">Fechamento</label>
             
-                                        <input id="horarioFechamento" type="time" class="form-control{{ $errors->has('horarioFechamento') ? ' is-invalid' : '' }}" name="horarioFechamento">
+                                        <input id="horarioFechamento" type="time" class="form-control{{ $errors->has('horarioFechamento') ? ' is-invalid' : '' }}" name="horarioFechamento" required>
         
                                         @if ($errors->has('horarioFechamento'))
                                             <span class="invalid-feedback">
@@ -217,14 +217,12 @@
                                 <hr>
                             </fieldset>
                             
-                            <fieldset>
+                            {{-- <fieldset>
                                 <legend>Imagem/logo</legend>
-                                {{-- <hr class="mt-0"> --}}
                                 <div class="form-row">            
                                     <div class="form-group col-md-4">
                                         <label for="customFile">Escolha um arquivo</label>
-                                        <input type="file" class="form-control-file" name="imagem" id="customFile" required accept="image/*">
-                                        {{--  <input type="file" class="file" id="customFile" required>  --}}
+                                        <input type="file" class="form-control-file" name="imagem" id="customFile" accept="image/*">
                                     </div>
                                 </div>
                                 <hr>
@@ -237,12 +235,13 @@
         
                                     <textarea name="informacao" class="form-control" id="informacao" rows="3"></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
     
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">Criar petshop!</button>
-                                </div>
+                            {{-- <div class="form-group row mb-0"> --}}
+                            <div class="form-row">
+                                {{-- <div class="col-md-8 offset-md-4"> --}}
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Criar petshop!</button>
+                                {{-- </div> --}}
                             </div>
                         </form>
                     </div>
