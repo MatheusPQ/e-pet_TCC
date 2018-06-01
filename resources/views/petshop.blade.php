@@ -147,7 +147,7 @@
                                 </div> --}}
                                 <div class="form-group col-md-3">
                                     <label for="date">Data</label>
-                                    <input type="date" name="data" id="data" class="form-control" required>
+                                    <input type="text" name="data" id="data" class="form-control" required>
                                 </div>
                             </div>
 

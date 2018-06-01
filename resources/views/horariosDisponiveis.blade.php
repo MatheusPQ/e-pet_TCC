@@ -1,3 +1,15 @@
+
+@if(session()->has('mensagem-horariosDisponiveis'))
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Horário marcado! <a href="/agenda" class="alert-link">Clique aqui para acessar sua agenda.</a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+@endif
+
 @if($horarios->count() > 0)
     <table class="table table-hover" id="tabela_marcarHorario">
         <thead class="thead-dark">

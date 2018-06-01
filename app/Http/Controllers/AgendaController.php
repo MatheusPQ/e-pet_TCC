@@ -77,6 +77,7 @@ class AgendaController extends Controller
         $agenda->raca_id = $req->input('raca_id');
         $agenda->preco = $petshopServicoRaca->preco;
         $agenda->save();
+        session()->flash('mensagem-horariosDisponiveis', 'Sucesso');
     }
 
     public function desmarcarHorario(Request $req){
@@ -92,6 +93,10 @@ class AgendaController extends Controller
         $agenda->raca_id = null;
         $agenda->preco = null;
         $agenda->save();
+
+        $horarios =  Agenda::where(['status' => "MARCADO", 'user_id' => Auth::id()])->with('raca')->get();
+        session()->flash('mensagem-meusHorariosMarcados', 'Sucesso');
+        return view('meusHorariosMarcados', ['horarios' => $horarios])->render();
     }
 
     public function buscarHorariosMarcados($petshop_id, Request $req){

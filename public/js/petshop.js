@@ -1,7 +1,22 @@
+
+//Usadas no evento change do input de data
+var valorData;
+var dataFormatada;
+
 $(document).ready(function(){
 	bloquearBotaoDeMarcarHorario('Selecione uma data!');
-	var petshop_id = $('#petshop_id').val();
 	$('.starrr').starrr();
+
+	var petshop_id = $('#petshop_id').val();
+    var dataDeHoje = moment(new Date());
+
+	$('input[name="data"]').daterangepicker({
+        "minDate": dataDeHoje,
+		"singleDatePicker": true,
+		"showDropdowns": true,
+	});
+
+	$('input[name="data"]').val('');
 
 	$('.starrr').on('starrr:change', function(e, value){		
 		dados = {
@@ -23,14 +38,19 @@ $(document).ready(function(){
 		});		
 	});
 
-    $('#data').change(function(){
+	$('#data').change(function(){
+
+		//Formata a data para ano-mes-dia
+		valorData = $('#data').val();
+		dataFormatada = moment(valorData, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
 		bloquearBotaoDeMarcarHorario('Selecione uma data e horário!');
 		buscarHorariosDisponiveis(petshop_id);
     });
 
 	$('#btn-marcarHorario').click(function(event){
 		var dados = {
-			data            : $('#data').val(),
+			data            : dataFormatada,
 			hora			: $('#tabela_horarios input[name="radio"]:checked').data('hora'),
 			funcionario_id	: $('#tabela_horarios input[name="radio"]:checked').data('funcionario'),
 			user_id			: $('#user_id').val(),
@@ -47,6 +67,9 @@ $(document).ready(function(){
 			success: function(data) {
 				// $('#tabela_horarios').html(data);
 				// preencherTabelaComHorariosDisponiveis(data);
+
+				bloquearBotaoDeMarcarHorario('Selecione uma data e horário!');
+				buscarHorariosDisponiveis(petshop_id);
 			}, error: function(){
 				alert('Houve algum erro ao marcar o horário. Tente novamente!');
 			}
@@ -93,8 +116,13 @@ $(document).ready(function(){
 });
 
 function buscarHorariosDeOutraPagina(url, petshop_id) {
+
+	// var valorData = $('#data').val();
+	// var dataFormatada = moment(valorData, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
     var dados = {
-		data            : $('#data').val(),
+		// data            : $('#data').val(),
+		data            : dataFormatada,
 		petshop_id		: petshop_id
     }
 
@@ -111,8 +139,13 @@ function buscarHorariosDeOutraPagina(url, petshop_id) {
 }
 
 function buscarHorariosDisponiveis(petshop_id){
+
+	// var valorData = $('#data').val();
+	// var dataFormatada = moment(valorData, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
     var dados = {
-		data            : $('#data').val(),
+		// data            : $('#data').val(),
+		data            : dataFormatada,
 		petshop_id		: petshop_id
     }
 
@@ -129,20 +162,6 @@ function buscarHorariosDisponiveis(petshop_id){
 		}
     });
 }
-
-// ==== FUNÇÃO DESATUALIZADA - REMOVER ====
-// function preencherTabelaComHorariosDisponiveis(dados){
-//     //Esvazia a tabela.
-//     $('#tabela_marcarHorario').find('tbody tr').remove();
-    
-//     //Preenche a tabela.
-//     $.each(dados, function(index, valor){               
-//         $('#tabela_marcarHorario tbody').append('<tr>' + 
-// 			'<td>'+ valor.data + ' - '+ valor.hora +'</td>' +
-// 			'<td>'+ valor.funcionario.nome +'</td>' +
-// 			'</tr>');
-//     });
-// }
 
 function buscarAvaliacao(){
 	

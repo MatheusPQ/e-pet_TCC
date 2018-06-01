@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('#tabela_minhaagenda').on('click', 'a[name="btn-desmarcarHorario"]', function(){        
+    $('#minha_agenda').on('click', 'a[name="btn-desmarcarHorario"]', function(){        
         
         var dados = {
             funcionario_id  : $(this).data('funcionario'),
@@ -20,7 +20,8 @@ $(document).ready(function(){
                 method: "POST",
                 data: dados,
                 success: function(data) {
-                    linhaTabela.closest('tr').remove();
+                    // linhaTabela.closest('tr').remove();
+                    $('#minha_agenda').html(data);
                 }
             });
 
