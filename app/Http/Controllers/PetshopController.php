@@ -18,8 +18,8 @@ class PetshopController extends Controller
     }
 
     public function index(){
-        $petshops = Petshop::with('petshopservicos.servico')->get();
-        return view('index', compact('petshops'));
+        // $petshops = Petshop::with('petshopservicos.servico')->get();
+        // return view('index', compact('petshops'));
     }
 
     public function mostrarMeusPetshops(){

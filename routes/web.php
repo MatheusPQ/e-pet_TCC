@@ -11,8 +11,6 @@
 |
 */
 
-// Route::get('/', 'PetshopCon');
-
 Auth::routes();
 
 Route::get('/estatisticas', 'HomeController@mostrarEstatisticas');
@@ -37,47 +35,31 @@ Route::get('/petshop/{id}/buscarHorariosMarcados', 'AgendaController@buscarHorar
 // Route::put('/petshop/{id}', 'PetshopController@update');
 // Route::delete('/petshop/{id}', 'PetshopController@destroy');
 
-Route::get('/admin/{id}', 'PetshopController@showAdmin')->name('admin');
-Route::get('/admin/{id}/animais', 'PetshopServicoRacaController@create')->name('admin.servicoRaca');
-Route::post('/admin/{id}/animais', 'PetshopServicoRacaController@store')->name('admin.servicoRaca.novo');
-Route::get('/admin/{id}/servicos', 'PetshopServicoController@create')->name('admin.servicos');
-Route::post('/admin/{id}/servicos', 'PetshopServicoController@store')->name('admin.servicos.store');
-Route::get('/admin/{id}/buscarPrecos', 'PetshopServicoRacaController@buscarPrecos');
-Route::get('/admin/{id}/funcionarios', 'FuncionarioController@create')->name('admin.funcionarios');
-Route::get('/admin/{id}/funcionarios/buscarFuncionarios', 'FuncionarioController@buscarFuncionarios');
-Route::post('/admin/{id}/funcionarios', 'FuncionarioController@store')->name('admin.funcionarios.store');
-Route::post('/admin/{id}/funcionariopetshops', 'FuncionarioPetshopController@store')->name('admin.funcionariopetshops.store');
-Route::get('/admin/{id}/buscarAgenda', 'AgendaController@buscarAgenda');
-Route::post('/admin/{id}/alterarStatusHorario', 'AgendaController@alterarStatusHorario');
+// Route::prefix('/usuario')->group(function(){
+Route::middleware('petshop.owner')->prefix('/admin')->group(function(){
+    Route::get('/{id}', 'PetshopController@showAdmin')->name('admin');
+    Route::get('/{id}/animais', 'PetshopServicoRacaController@create')->name('admin.servicoRaca');
+    Route::post('/{id}/animais', 'PetshopServicoRacaController@store')->name('admin.servicoRaca.novo');
+    Route::get('/{id}/servicos', 'PetshopServicoController@create')->name('admin.servicos');
+    Route::post('/{id}/servicos', 'PetshopServicoController@store')->name('admin.servicos.store');
+    Route::get('/{id}/buscarPrecos', 'PetshopServicoRacaController@buscarPrecos');
+    Route::get('/{id}/funcionarios', 'FuncionarioController@create')->name('admin.funcionarios');
+    Route::get('/{id}/funcionarios/buscarFuncionarios', 'FuncionarioController@buscarFuncionarios');
+    Route::post('/{id}/funcionarios', 'FuncionarioController@store')->name('admin.funcionarios.store');
+    Route::post('/{id}/funcionariopetshops', 'FuncionarioPetshopController@store')->name('admin.funcionariopetshops.store');
+    Route::get('/{id}/buscarAgenda', 'AgendaController@buscarAgenda');
+    Route::post('/{id}/alterarStatusHorario', 'AgendaController@alterarStatusHorario');
+});
 
 Route::get('/petshopservicoraca/{id}/buscarPreco', 'PetshopServicoRacaController@buscarPreco');
-
-
-
-
 
 Route::get('/servico', 'ServicosController@index');
 Route::post('/servico', 'ServicosController@store')->name('servico.store');
 Route::get('/servico/create', 'ServicosController@create');
-// Route::get('/servico/{id}', 'ServicosController@show');
-// Route::get('/servico/{id}/edit', 'ServicosController@edit');
-// Route::put('/servico/{id}', 'ServicosController@update');
-// Route::delete('/servico/{id}', 'ServicosController@destroy');
 
 Route::get('/petshopServico', 'PetshopServicoController@index');
 Route::post('/petshopServico', 'PetshopServicoController@store')->name('petshopServico.store');
 Route::get('/petshopServico/{id}/create', 'PetshopServicoController@create')->name('petshopServico.create');
-// Route::get('/servico/{id}', 'PetshopServicoController@show');
-// Route::get('/servico/{id}/edit', 'PetshopServicoController@edit');
-// Route::put('/servico/{id}', 'PetshopServicoController@update');
-// Route::delete('/servico/{id}', 'PetshopServicoController@destroy');
-
-// Route::get('/servico/{id}/addServicos', 'ServicosController@addServicos')->name('servico.addServicos');
-// Route::post('/servico/save', 'ServicosController@save')->name('servico.save');
-
-
-// Route::get('/evento', 'EventoController@list');
-// Route::post('/evento', 'EventoController@store')->name('evento.store');
 
 Route::get('/agenda', 'AgendaController@index');
 Route::post('/agenda/desmarcarHorario', 'AgendaController@desmarcarHorario');

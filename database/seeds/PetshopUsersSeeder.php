@@ -13,7 +13,7 @@ class PetshopUsersSeeder extends Seeder
     {
         DB::table('petshop_users')->insert([
             'petshop_id' => 1,
-            'user_id' => 1
+            'user_id' => 2
         ]);
     }
 }
