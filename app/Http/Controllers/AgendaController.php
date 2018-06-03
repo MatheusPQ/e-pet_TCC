@@ -27,6 +27,7 @@ class AgendaController extends Controller
                         ->with('funcionario')
                         ->with('user')
                         ->with('raca')
+                        ->orderBy('hora')
                         ->get();
     }
 

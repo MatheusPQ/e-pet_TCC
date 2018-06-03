@@ -38,6 +38,8 @@ Route::get('/petshop/{id}/buscarHorariosMarcados', 'AgendaController@buscarHorar
 // Route::prefix('/usuario')->group(function(){
 Route::middleware('petshop.owner')->prefix('/admin')->group(function(){
     Route::get('/{id}', 'PetshopController@showAdmin')->name('admin');
+    Route::get('/{id}/edit', 'PetshopController@edit')->name('admin.editar');
+    Route::post('/{id}/update', 'PetshopController@update')->name('admin.update');
     Route::get('/{id}/animais', 'PetshopServicoRacaController@create')->name('admin.servicoRaca');
     Route::post('/{id}/animais', 'PetshopServicoRacaController@store')->name('admin.servicoRaca.novo');
     Route::get('/{id}/servicos', 'PetshopServicoController@create')->name('admin.servicos');

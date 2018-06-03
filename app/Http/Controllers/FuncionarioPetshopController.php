@@ -28,12 +28,18 @@ class FuncionarioPetshopController extends Controller
 
         foreach($datas as $data){
             foreach($horarios as $hora) {
-                $agenda = new Agenda;
-                $agenda->funcionario_id = $funcionario_id;
-                // $agenda->petshop_id = $petshop_id;
-                $agenda->data = $data;
-                $agenda->hora = $hora;
-                $agenda->save();
+                $agenda = Agenda::where("funcionario_id", $funcionario_id)
+                                ->where("data", $data)
+                                ->where("hora", $hora)
+                                ->first();
+                if(!$agenda){ //Verificando se horário já existe, pra evitar dados duplicados
+                    $agenda = new Agenda;
+                    $agenda->funcionario_id = $funcionario_id;
+                    // $agenda->petshop_id = $petshop_id;
+                    $agenda->data = $data;
+                    $agenda->hora = $hora;
+                    $agenda->save();
+                }
             }
         }
         

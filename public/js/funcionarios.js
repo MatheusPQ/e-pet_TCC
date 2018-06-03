@@ -92,6 +92,8 @@ $(document).ready(function(){
             data: dados,
             success: function(data) {
                 buscarFuncionarios(petshop_id)
+            }, error: function(data){
+                alert("Não foi possível definir os horários do funcionário.");
             }
         });
     });

@@ -19,10 +19,12 @@ class IsPetshopOwner
     public function handle($request, Closure $next)
     {
         $petshopUser = PetshopUser::where('petshop_id', $request->id)->first();
-        if($petshopUser->user_id != Auth::user()->id){
-            session()->flash('erro', 'Não autorizado');
-            return redirect('/');
+        if($petshopUser){
+            if($petshopUser->user_id == Auth::user()->id){
+                return $next($request);
+            }
         }
-        return $next($request);
+        session()->flash('erro', 'Não autorizado');
+        return redirect('/');
     }
 }
