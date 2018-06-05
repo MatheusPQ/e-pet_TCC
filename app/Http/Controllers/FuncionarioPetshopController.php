@@ -74,4 +74,18 @@ class FuncionarioPetshopController extends Controller
 
         return $datas;
     }
+
+    public function delete(Request $req){
+        
+        $where = [
+            "funcionario_id" => $req->input('funcionario_id'),
+            "data" => $req->input('data'),
+            "hora" => $req->input('hora')
+        ];
+
+        $agenda = Agenda::where($where)->first()->delete();//->delete();
+        // dd($agenda);
+        // return true;
+
+    }
 }

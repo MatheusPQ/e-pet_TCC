@@ -67,9 +67,18 @@
                             @endforeach
                         </div>
                     </div>
-                    @if(Auth::check())
+                    {{-- @if(Auth::check())
                         <button id="btn_buscarCidadePetshop" class="btn btn-primary col-md ml-1 mr-1 mb-1">Mesma cidade</button>
-                    @endif
+                    @endif --}}
+                </div>
+                <div class="form-row">
+                    <div class="btn-group col-md">
+                        <div class="custom-control custom-checkbox pull-right">
+                            <input type="checkbox" class="custom-control-input" id="check_buscarCidadePetshop" {{Auth::check() ?:"disabled"}} >
+                            <label class="custom-control-label" for="check_buscarCidadePetshop">Buscar na minha cidade</label>
+                        </div>
+
+                    </div>
                 </div>
             </p>
         </div>

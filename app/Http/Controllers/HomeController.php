@@ -36,25 +36,48 @@ class HomeController extends Controller
 
     public function buscarPetshopPorNome(Request $req){
         $nomePetshop = $req->input('nomePetshop');
-        $petshops = Petshop::where('nomeFantasia', 'like', '%'.$nomePetshop.'%')->get();
+
+        if($req->input('cidade') == 1){
+            $user = Auth::user();
+            $petshops = Petshop::where('nomeFantasia', 'like', '%'.$nomePetshop.'%')->where('cidade', $user->cidade)->get();
+        } else {
+            $petshops = Petshop::where('nomeFantasia', 'like', '%'.$nomePetshop.'%')->get();
+        }
+
         return view('tabelaPetshops', ['petshops' => $petshops])->render();        
     }
 
-    public function buscarPetshopPorAvaliacao(){
-        // $nomePetshop = $req->input('nomePetshop');
-        $petshops = Petshop::orderBy('media_avaliacoes', 'desc')->get();
+    public function buscarPetshopPorAvaliacao(Request $req){
+
+        if($req->input('cidade') == 1){
+            $user = Auth::user();
+            $petshops = Petshop::where('cidade', $user->cidade)->orderBy('media_avaliacoes', 'desc')->get();
+        } else {
+            $petshops = Petshop::orderBy('media_avaliacoes', 'desc')->get();
+        }
+
         return view('tabelaPetshops', ['petshops' => $petshops])->render();        
     }
 
     public function buscarPetshopPorServico(Request $req){
         $servico_id = $req->input('servico');
-
-        $petshopServicos = PetshopServico::where('servico_id', $servico_id)->with('petshop')->get();
         $petshops = [];
-        foreach ($petshopServicos as $ps) {
-            $petshops[] = $ps->petshop;
+        $petshopServicos = PetshopServico::where('servico_id', $servico_id)->with('petshop')->get();
+
+        if($req->input('cidade') == 1){
+            $user = Auth::user();
+
+            foreach ($petshopServicos as $ps) {
+                if($ps->petshop->cidade == $user->cidade){
+                    $petshops[] = $ps->petshop;
+                }
+            }
+        } else {
+            foreach ($petshopServicos as $ps) {
+                $petshops[] = $ps->petshop;
+            }
         }
-        // dd($petshops);
+
         return view('tabelaPetshops', ['petshops' => $petshops])->render();        
     }
 

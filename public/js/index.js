@@ -8,7 +8,8 @@ $(document).ready(function(){
             url: '/buscarPetshopPorNome',
             method: "GET",
             data: {
-                nomePetshop: $('#txt_buscarPetshop').val()
+                nomePetshop: $('#txt_buscarPetshop').val(),
+                cidade : $('#check_buscarCidadePetshop').is(":checked") ? 1 : 0,
             },
             success: function(data){
                 $('#lista_petshops').html(data);
@@ -25,6 +26,9 @@ $(document).ready(function(){
         $.ajax({
             url: '/buscarPetshopPorAvaliacao',
             method: "GET",
+            data: {
+                cidade : $('#check_buscarCidadePetshop').is(":checked") ? 1 : 0,
+            },
             success: function(data){
                 $('#lista_petshops').html(data);
             },
@@ -42,7 +46,8 @@ $(document).ready(function(){
             url: '/buscarPetshopPorServico',
             method: "GET",
             data: {
-                servico: $(this).attr('id')
+                servico: $(this).attr('id'),
+                cidade : $('#check_buscarCidadePetshop').is(":checked") ? 1 : 0,
             },
             success: function(data){
                 $('#lista_petshops').html(data);

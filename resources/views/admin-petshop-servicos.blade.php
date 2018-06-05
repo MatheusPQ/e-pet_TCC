@@ -26,7 +26,7 @@
                     {{--  <h5 class="card-title">SERVIÇOS</h5>  --}}
                     <p class="card-text">Selecione os serviços oferecidos pelo seu petshop!</p>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col">
     
                             <div class="card">
                                 <div class="card-body">
@@ -45,9 +45,9 @@
                                         <label class="btn {{ in_array(6 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="6"> Hidratação
                                         </label>
-                                        <label class="btn {{ in_array(7 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
+                                        {{-- <label class="btn {{ in_array(7 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="7"> Loja
-                                        </label>
+                                        </label> --}}
                                         <label class="btn {{ in_array(9 , $petshop_servicos_ids) ? 'btn-success' : 'btn-secondary' }} btn-block">
                                             <input name="servico" type="checkbox" data-petshopid="{{$petshop->id}}" autocomplete="off" value="9"> Tintura de pelagem
                                         </label>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Saúde</h4>
@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
     
                     </div> <!-- div.row -->
                 </div> <!-- div.card-body -->

@@ -102,6 +102,33 @@ $(document).ready(function(){
         buscarAgendaDoFuncionario(petshop_id);
     });
 
+    $('#tabela_agenda').on('click', 'button[name="btn-removerHorarioDisponivel"]', function(){
+        var dataSelecionada = moment($(this).data('dia')).format('DD/MM/YYYY');
+        var horaSelecionada = moment($(this).data('hora'), "HH:mm:ss").format('HH:mm');
+        if(confirm("Remover o horário selecionado?\nDATA: "+ dataSelecionada +"\nHORA: "+$(this).data('hora')+" ")){
+        
+            var dados = {
+                funcionario_id  : $(this).data('funcionario'),
+                data            : $(this).data('dia'),
+                hora            : $(this).data('hora')
+            }
+            
+            $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+            $.ajax({
+                url: "/admin/"+petshop_id+"/funcionariopetshops/delete",
+                method: "POST",
+                data: dados,
+                success: function(data) {
+                    buscarAgendaDoFuncionario(petshop_id);
+                }, error: function(data){
+                    alert("Não foi possível deletar o horário. Tente novamente.");
+                }
+            });
+
+        }
+
+    });
+
 });
 
 function preencherTabelaComDadosDaAgenda(dados){
@@ -114,6 +141,7 @@ function preencherTabelaComDadosDaAgenda(dados){
         var raca = "";
         var preco = "";
         var servico = "";
+        var btnDesativado = "";
 
         if(valor.user != null){            
             var nomeCliente = valor.user.name;
@@ -135,23 +163,30 @@ function preencherTabelaComDadosDaAgenda(dados){
             var span = "primary";
         } else if (valor.status == "MARCADO"){
             var span = "warning";
+            btnDesativado = "disabled";
         } else if (valor.status == "ATENDIDO"){
             var span = "success";
+            btnDesativado = "disabled";
         } else if (valor.status == "CANCELADO"){
             var span = "danger";
+            btnDesativado = "disabled";
         }
-
-                
 
         $('#tabela_agenda tbody').append('<tr>' + 
                                         '<td>'+ valor.funcionario.nome +'</td>' +
-                                        '<td>'+ valor.data +'</td>' +
-                                        '<td>'+ valor.hora +'</td>' +
+                                        '<td>'+ moment(valor.data).format('DD/MM/YYYY') +' ' + moment(valor.hora, "HH:mm:ss").format('HH:mm') +'</td>' +
+                                        // '<td>'+ valor.hora +'</td>' +
                                         '<td> <span class="badge badge-pill badge-'+span+'">'+ valor.status +'</span> </td>' +
                                         '<td>'+ servico +'</td>' +
                                         '<td>'+ nomeCliente +'</td>' +
                                         '<td>'+ raca +'</td>' +
                                         '<td>'+ preco +'</td>' +
+                                        '<td> <button name="btn-removerHorarioDisponivel" href="#" class="btn btn-danger btn-sm" '+ btnDesativado +' ' +
+                                            'data-funcionario="'+ valor.funcionario_id +'"' +
+                                            'data-dia="'+ valor.data +'"' +
+                                            'data-hora="'+ valor.hora +'"> <b>X</b>' +
+                                            '</button> ' +
+                                        '</td>' +
                                         '</tr>');
     });
 

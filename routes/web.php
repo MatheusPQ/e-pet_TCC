@@ -49,6 +49,7 @@ Route::middleware('petshop.owner')->prefix('/admin')->group(function(){
     Route::get('/{id}/funcionarios/buscarFuncionarios', 'FuncionarioController@buscarFuncionarios');
     Route::post('/{id}/funcionarios', 'FuncionarioController@store')->name('admin.funcionarios.store');
     Route::post('/{id}/funcionariopetshops', 'FuncionarioPetshopController@store')->name('admin.funcionariopetshops.store');
+    Route::post('/{id}/funcionariopetshops/delete', 'FuncionarioPetshopController@delete')->name('admin.funcionariopetshops.delete');
     Route::get('/{id}/buscarAgenda', 'AgendaController@buscarAgenda');
     Route::post('/{id}/alterarStatusHorario', 'AgendaController@alterarStatusHorario');
 });

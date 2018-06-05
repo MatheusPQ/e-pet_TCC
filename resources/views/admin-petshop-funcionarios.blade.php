@@ -98,13 +98,14 @@
                     <thead>
                         <tr>
                             <th scope="col">Funcionário</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Hora</th>
+                            <th scope="col">Data/Hora</th>
+                            {{-- <th scope="col">Hora</th> --}}
                             <th scope="col">Status</th>
                             <th scope="col">Serviço</th>
                             <th scope="col">Cliente</th>
                             <th scope="col">Raça</th>
                             <th scope="col">Preço</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
