@@ -19,13 +19,6 @@ $(document).ready(function(){
 		e.preventDefault();
 
 		var elementoClicado = $(this);
-
-		// var dados = {
-		// 	status		: "ATENDIDO",
-		// 	// dia			: $(this).data('dia'),
-		// 	// hora		: $(this).data('hora'),
-		// 	// funcionario : $(this).data('funcionario'),
-		// }
 		alterarStatusDoHorario(petshop_id, elementoClicado, "ATENDIDO");
 	});
 
@@ -33,13 +26,6 @@ $(document).ready(function(){
 		e.preventDefault();
 
 		var elementoClicado = $(this);
-
-		// var dados = {
-		// 	status		: "CANCELADO",
-		// 	// dia			: $(this).data('dia'),
-		// 	// hora		: $(this).data('hora'),
-		// 	// funcionario : $(this).data('funcionario'),
-		// }
 		alterarStatusDoHorario(petshop_id, elementoClicado, "CANCELADO");
 	});
 
@@ -47,13 +33,6 @@ $(document).ready(function(){
 		e.preventDefault();
 
 		var elementoClicado = $(this);
-
-		// var dados = {
-		// 	status		: "DESMARCAR",
-		// 	// dia			: $(this).data('dia'),
-		// 	// hora		: $(this).data('hora'),
-		// 	// funcionario : $(this).data('funcionario'),
-		// }
 		alterarStatusDoHorario(petshop_id, elementoClicado, "DISPONIVEL");
 	});
 });
@@ -112,7 +91,8 @@ function buscarHorariosMarcados(petshop_id){
         method: "GET",
         data: dados,
         success: function(data) {
-            $('#tabela_horarios_marcados').html(data);
+			$('#tabela_horarios_marcados').html(data);
+			calcularEstatisticas();
         }, error: function(){
 			alert('Não foi possível carregar os horários.');
 		}
@@ -145,4 +125,23 @@ function inserirFuncionariosNoSelect(dados){
 function definirDataDeHoje(){
 	var dataHoje = moment(new Date()).format("YYYY-MM-DD");
 	$('#data_agenda').val(dataHoje);
+}
+
+function calcularEstatisticas(){
+	var ganhos = 0;
+	var cancelamentos = 0;
+	$('#tabela_marcarHorario > tbody  > tr').each(function(i, tr){
+		var span = $(tr).find('td').eq(2).find('span').text();
+		
+		if(span == "ATENDIDO"){
+			ganhos += parseFloat($(tr).find('td').eq(6).data('preco'));
+		}
+
+		if(span == "CANCELADO"){
+			cancelamentos++;
+		}
+	});
+
+	$('#tabela_estatisticas span.preco').text("R$ " + ganhos.toFixed(2));
+	$('#tabela_estatisticas span.indisponivel').text(cancelamentos);
 }

@@ -3,7 +3,12 @@
     <div class="card bg-light">
             {{-- <img class="card-img-top" src="/img/Imagem18.jpg" alt="Card image cap"> --}}
         <div class="card-body">
-            <h4 class="pull-right"><i class="icon-star" style="color: #FFD119;"></i> {{ $petshop->media_avaliacoes }} <small class="text-muted">/ 5</small></h4>
+            {{-- <h4 class="pull-right"><i class="icon-star" style="color: #FFD119;"></i> {{ $petshop->media_avaliacoes }} <small class="text-muted">/ 5</small></h4> --}}
+            <h4 class="pull-right">
+                @for($i = 1; $i <= $petshop->media_avaliacoes; $i++)
+                    <i class="icon-star" style="color: #FFD119;"></i>
+                @endfor
+            </h4>
             <h4 class="card-title">{{ $petshop->nomeFantasia }}</h4>
             <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->cidade }} - {{ $petshop->uf }} </h6>
             <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->endereco }}, nº {{ $petshop->numero }}</h6>

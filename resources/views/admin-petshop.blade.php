@@ -27,14 +27,48 @@
                     <hr>
 
                     <div class="row">
-                        <div class="form-group col-sm-6 col-md-4">
-                            <label for="select_funcionario">Selecione o funcionário</label>
-                            <select name="select_funcionario" id="select_funcionario" class="form-control"></select>
-                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Agenda do funcionário</h5>
+                                    <hr>
+                                    {{-- <div class="form-group col-sm-6 col-md-4"> --}}
+                                    <div class="form-group">
+                                        <label for="select_funcionario">Selecione o funcionário</label>
+                                        <select name="select_funcionario" id="select_funcionario" class="form-control"></select>
+                                    </div>
+            
+                                    {{-- <div class="form-group col-sm-6 col-md-4"> --}}
+                                    <div class="form-group">
+                                        <label for="data_agenda">Data</label>
+                                        <input type="date" class="form-control" name="data_agenda" id="data_agenda">
+                                    </div>
 
-                        <div class="form-group col-sm-6 col-md-4">
-                            <label for="data_agenda">Data</label>
-                            <input type="date" class="form-control" name="data_agenda" id="data_agenda">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Estatísticas do dia</h5>
+                                    <hr>
+                                    <table id="tabela_estatisticas" class="table-sm table-hover">
+                                        <tr>
+                                            <td>Ganhos:</td>
+                                            <td>
+                                                <span class="preco"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cancelamentos:</td>
+                                            <td>
+                                                <span class="indisponivel"></span> 
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 

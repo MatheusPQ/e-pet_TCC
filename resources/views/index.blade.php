@@ -39,12 +39,13 @@
         <a href="" class="btn btn-outline-light">Ler mais!</a>
     </div>
 </section>  --}}
-<section class="topo">
-    <div class="jumbotron jumbotron-fluid">
+<section class="topo pt-0">
+    <div class="background-image"></div>
+    <div class="jumbotron jumbotron-fluid text-light">
         <div class="container">
             <h1 class="display-4">E-Pet</h1>
             <p class="lead">Encontre o petshop ideal para seu cãozinho!</p>
-            <hr>
+            <hr class="bg-light">
             <p class="lead">
                 {{-- <a class="btn btn-outline-primary btn-lg" href="#" role="button">Cadastrar meu petshop!</a> --}}
                 <div class="form-group">
@@ -105,7 +106,12 @@
                         <div class="card bg-light">
                                 {{-- <img class="card-img-top" src="/img/Imagem18.jpg" alt="Card image cap"> --}}
                             <div class="card-body">
-                                <h4 class="pull-right"><i class="icon-star" style="color: #FFD119;"></i> {{ $petshop->media_avaliacoes }} <small class="text-muted">/ 5</small></h4>
+                                {{-- <h4 class="pull-right"><i class="icon-star" style="color: #FFD119;"></i> {{ $petshop->media_avaliacoes }} <small class="text-muted">/ 5</small></h4> --}}
+                                <h4 class="pull-right">
+                                    @for($i = 1; $i <= $petshop->media_avaliacoes; $i++)
+                                        <i class="icon-star" style="color: #FFD119;"></i>
+                                    @endfor
+                                </h4>
                                 <h4 class="card-title">{{ $petshop->nomeFantasia }}</h4>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->cidade }} - {{ $petshop->uf }} </h6>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->endereco }}, nº {{ $petshop->numero }}</h6>

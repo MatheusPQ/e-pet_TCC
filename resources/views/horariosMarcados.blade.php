@@ -34,7 +34,7 @@
                     <td>{{$horario->servico}}</td>
                     <td>{{$horario->user->name}}</td>
                     <td>{{$horario->raca->raca}}</td>
-                    <td>R$ {{$horario->preco}}</td>
+                    <td data-preco="{{$horario->preco}}">R$ {{$horario->preco}}</td>
                     <td>
                         <a href="#" id="btn-atendido" class="btn btn-success btn-sm" data-dia="{{$horario->data}}" data-hora="{{$horario->hora}}" data-funcionario="{{$horario->funcionario_id}}">Atendido</a>
                         <a href="#" id="btn-cancelado" class="btn btn-danger btn-sm" data-dia="{{$horario->data}}" data-hora="{{$horario->hora}}" data-funcionario="{{$horario->funcionario_id}}">Cancelado</a>
