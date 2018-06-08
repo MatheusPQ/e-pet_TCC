@@ -39,9 +39,9 @@
         <a href="" class="btn btn-outline-light">Ler mais!</a>
     </div>
 </section>  --}}
-<section class="topo pt-0">
+<section class="topo pt-0 pb-0">
     <div class="background-image"></div>
-    <div class="jumbotron jumbotron-fluid text-light">
+    <div class="jumbotron jumbotron-fluid text-light ">
         <div class="container">
             <h1 class="display-4">E-Pet</h1>
             <p class="lead">Encontre o petshop ideal para seu cãozinho!</p>
@@ -75,8 +75,10 @@
                 <div class="form-row">
                     <div class="btn-group col-md">
                         <div class="custom-control custom-checkbox pull-right">
-                            <input type="checkbox" class="custom-control-input" id="check_buscarCidadePetshop" {{Auth::check() ?:"disabled"}} >
-                            <label class="custom-control-label" for="check_buscarCidadePetshop">Buscar na minha cidade</label>
+                            @if(Auth::check())
+                                <input type="checkbox" class="custom-control-input" id="check_buscarCidadePetshop">
+                                <label class="custom-control-label" for="check_buscarCidadePetshop">Buscar na minha cidade</label>
+                            @endif
                         </div>
 
                     </div>

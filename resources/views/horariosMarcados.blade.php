@@ -6,7 +6,7 @@
                 <th scope="col">Funcionário</th>
                 <th scope="col">Status</th>
                 <th scope="col">Serviço</th>
-                <th scope="col">Cliente</th>
+                <th scope="col">Cliente/Contato</th>
                 <th scope="col">Raça</th>
                 <th scope="col">Preço</th>
                 <th scope="col"></th>
@@ -32,7 +32,7 @@
                         <span class="badge badge-{{$span}}">{{$horario->status}}</span>
                     </td>
                     <td>{{$horario->servico}}</td>
-                    <td>{{$horario->user->name}}</td>
+                    <td>{{$horario->user->name}} <br> {{$horario->user->phone}} </td>
                     <td>{{$horario->raca->raca}}</td>
                     <td data-preco="{{$horario->preco}}">R$ {{$horario->preco}}</td>
                     <td>
