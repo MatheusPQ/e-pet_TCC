@@ -83,6 +83,11 @@ class PetshopController extends Controller
         return view('petshop', compact('petshop', 'racas'));
     }
 
+    public function destroy($id){
+        Petshop::find($id)->delete();
+        return redirect('/');
+    }
+
     public function showAdmin($id){
         $petshop = Petshop::with('petshopservicos.servico')->with('petshopservicoracas')->find($id);
         return view('admin-petshop', compact('petshop'));

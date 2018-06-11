@@ -70,4 +70,11 @@ $(document).ready(function(){
             }
         });
     });        
+    
+    $('form').on('click', '#btn_apagarPetshop', function(event){
+        var nome = $(this).data("nome");
+        if(!confirm("Apagar o petshop "+ nome +" ?")){
+            event.preventDefault();
+        }
+    }); 
 });

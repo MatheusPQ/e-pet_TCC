@@ -89,6 +89,13 @@ class HomeController extends Controller
     }
 
     public function mostrarEstatisticas(){
-        return view('estatisticas');
+        if(Auth::check()){
+            if( Auth::user()->nivel == 1 ){
+                return view('estatisticas');
+            }
+        }
+        
+        session()->flash('erro', 'Não autorizado');
+        return redirect('/');
     }
 }

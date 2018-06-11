@@ -20,7 +20,7 @@ class IsPetshopOwner
     {
         $petshopUser = PetshopUser::where('petshop_id', $request->id)->first();
         if($petshopUser){
-            if($petshopUser->user_id == Auth::user()->id){
+            if( ($petshopUser->user_id == Auth::user()->id) || (Auth::user()->nivel == 1) ){
                 return $next($request);
             }
         }

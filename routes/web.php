@@ -12,7 +12,6 @@
 */
 
 Auth::routes();
-
 Route::get('/estatisticas', 'HomeController@mostrarEstatisticas');
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -27,13 +26,11 @@ Route::get('/petshop/create', 'PetshopController@create');
 Route::get('/petshop/meusPetshops', 'PetshopController@mostrarMeusPetshops');
 Route::post('/petshop/salvarAvaliacao', 'PetshopController@salvarAvaliacao');
 Route::get('/petshop/buscarAvaliacao', 'PetshopController@buscarAvaliacao');
+Route::delete('/petshop/destroy/{id}', 'PetshopController@destroy')->name('petshop.destroy');
 Route::get('/petshop/{id}', 'PetshopController@show')->name('petshop.show');
 Route::get('/petshop/{id}/buscarHorarios', 'AgendaController@buscarHorarios'); //Mostra os horários disponíveis p/ agendamento, de acordo com a data selecionada (tela do petshop)
 Route::post('/petshop/{id}/marcarHorario', 'AgendaController@marcarHorario');
 Route::get('/petshop/{id}/buscarHorariosMarcados', 'AgendaController@buscarHorariosMarcados');
-// Route::get('/petshop/{id}/edit', 'PetshopController@edit');
-// Route::put('/petshop/{id}', 'PetshopController@update');
-// Route::delete('/petshop/{id}', 'PetshopController@destroy');
 
 // Route::prefix('/usuario')->group(function(){
 Route::middleware('petshop.owner')->prefix('/admin')->group(function(){
@@ -66,3 +63,8 @@ Route::get('/petshopServico/{id}/create', 'PetshopServicoController@create')->na
 
 Route::get('/agenda', 'AgendaController@index');
 Route::post('/agenda/desmarcarHorario', 'AgendaController@desmarcarHorario');
+
+Route::get('/agenda/buscarEstatisticasAdmin', 'AgendaController@buscarEstatisticasAdmin');
+Route::get('/agenda/buscarServicosMaisUtilizados', 'AgendaController@buscarServicosMaisUtilizados');
+Route::get('/agenda/buscarRacasEmDestaque', 'AgendaController@buscarRacasEmDestaque');
+Route::get('/agenda/buscarNumeroPetshopsPorCidade', 'AgendaController@buscarNumeroPetshopsPorCidade');

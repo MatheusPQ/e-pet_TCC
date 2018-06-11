@@ -126,7 +126,17 @@
                                     @endforelse
                                 </p>
                                 <hr>
-                                <a href="{{route('petshop.show', ['id' => $petshop->id]) }}" class="btn btn-success btn-block">Marcar horário</a>
+                                @if(Auth::check() && Auth::user()->nivel == 1)
+                                    <a href="{{route('admin', ['id' => $petshop->id]) }}" class="btn btn-dark btn-block">Área administrativa</a>
+                                    <form action="{{route('petshop.destroy', ['id' => $petshop->id]) }}" method="post">
+                                        {{ method_field('delete') }}
+                                        @csrf
+                                        <button id="btn_apagarPetshop" class="btn btn-danger btn-block mt-1" type="submit" data-nome="{{$petshop->nomeFantasia}}">Apagar petshop</button>
+                                    </form>
+                                    {{-- <a href="{{route('petshop.destroy', ['id' => $petshop->id]) }}" class="btn btn-danger btn-block">Apagar petshop</a> --}}
+                                @else 
+                                    <a href="{{route('petshop.show', ['id' => $petshop->id]) }}" class="btn btn-success btn-block">Marcar horário</a>
+                                @endif
                             </div>
                         </div>
                     @empty

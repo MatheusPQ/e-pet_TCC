@@ -4,7 +4,7 @@
 <input type="hidden" id="petshop_id" value="{{$petshop->id}}">
 
 <div class="container">
-    <nav id="navbar-admin" class="navbar navbar-expand navbar-dark bg-dark">
+    <nav id="navbar-admin" class="navbar navbar-expand navbar-dark bg-dark mt-2">
         <a class="navbar-brand" href="#">Área administrativa</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">

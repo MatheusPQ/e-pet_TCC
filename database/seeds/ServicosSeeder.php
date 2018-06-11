@@ -23,26 +23,26 @@ class ServicosSeeder extends Seeder
             'id' => 3,
             'servico' => "Tosa Higiênica",
         ]);
-        DB::table('servicos')->insert([
-            'id' => 4,
-            'servico' => "Veterinário",
-        ]);
-        DB::table('servicos')->insert([
-            'id' => 5,
-            'servico' => "Pronto Socorro",
-        ]);
+        // DB::table('servicos')->insert([
+        //     'id' => 4,
+        //     'servico' => "Veterinário",
+        // ]);
+        // DB::table('servicos')->insert([
+        //     'id' => 5,
+        //     'servico' => "Pronto Socorro",
+        // ]);
         DB::table('servicos')->insert([
             'id' => 6,
             'servico' => "Hidratação",
         ]);
-        DB::table('servicos')->insert([
-            'id' => 7,
-            'servico' => "Loja",
-        ]);
-        DB::table('servicos')->insert([
-            'id' => 8,
-            'servico' => "Medicamentos",
-        ]);
+        // DB::table('servicos')->insert([
+        //     'id' => 7,
+        //     'servico' => "Loja",
+        // ]);
+        // DB::table('servicos')->insert([
+        //     'id' => 8,
+        //     'servico' => "Medicamentos",
+        // ]);
         DB::table('servicos')->insert([
             'id' => 9,
             'servico' => "Tintura de pelagem",
