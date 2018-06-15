@@ -15,8 +15,13 @@
 
                 <div class="card">
                     <div class="card-body">
+                        <h4 class="pull-right">
+                            @for($i = 1; $i <= $petshop->petshop->media_avaliacoes; $i++)
+                                <i class="icon-star" style="color: #FFD119;"></i>
+                            @endfor
+                        </h4>
                         <h4 class="card-title">{{ $petshop->petshop->nomeFantasia }}</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->petshop->cidade }} - {{ $petshop->petshop->uf }} | <span class="card-text avaliacao">Avaliação: 4.3/5</span></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->petshop->cidade }} - {{ $petshop->petshop->uf }}</h6>
                         <h6 class="card-subtitle mb-2 text-muted">{{ $petshop->petshop->endereco }}, nº {{ $petshop->petshop->numero }} </h6>
                         <hr>
                         <p class="card-text"> <b>Serviços oferecidos: </b>

@@ -56,7 +56,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><strong>Serviços mais requisitados</strong></h5>
                         <hr>
-                        <canvas id="grafServicos" width="400" height="400"></canvas>
+                        <canvas id="grafServicos" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><strong>Raças em destaque</strong></h5>
                         <hr>
-                        <canvas id="grafRacas" width="400" height="400"></canvas>
+                        <canvas id="grafRacas" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><strong>Regiões em alta</strong></h5>
                         <hr>
-                        <canvas id="grafRegioes" width="1000" height="400"></canvas>
+                        <canvas id="grafRegioes" width="1000" height="300"></canvas>
                     </div>
                 </div>
             </div>
